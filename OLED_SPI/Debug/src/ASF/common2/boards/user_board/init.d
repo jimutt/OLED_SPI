@@ -101,11 +101,16 @@ src/ASF/common2/boards/user_board/init.d \
  ../src/ASF/sam0/drivers/system/clock/clock.h \
  ../src/ASF/sam0/drivers/system/clock/gclk.h \
  ../src/ASF/sam0/drivers/system/clock/clock_samd21_r21/clock_feature.h \
+ ../src/ASF/common2/services/gfx_mono/gfx_mono_menu.h \
+ ../src/config/conf_menu.h \
  ../src/ASF/common2/services/gfx_mono/gfx_mono.h \
  ../src/ASF/common2/services/gfx_mono/gfx_mono_null.h \
- ../src/ASF/common2/services/gfx_mono/gfx_mono.h \
  ../src/ASF/common2/services/gfx_mono/gfx_mono_framebuffer.h \
  ../src/ASF/common2/services/gfx_mono/gfx_mono_generic.h \
+ ../src/ASF/common2/services/gfx_mono/gfx_mono.h \
+ ../src/ASF/common2/services/gfx_mono/sysfont.h \
+ ../src/config/conf_sysfont.h \
+ ../src/ASF/common2/services/gfx_mono/gfx_mono_text.h \
  ../src/ASF/common/boards/board.h ../src/ASF/sam0/drivers/port/port.h \
  ../src/ASF/sam0/drivers/system/pinmux/pinmux.h \
  ../src/ASF/sam0/drivers/sercom/sercom.h \
@@ -334,15 +339,25 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\arm\ gcc\native\4.8.1443\arm-gnu
 
 ../src/ASF/sam0/drivers/system/clock/clock_samd21_r21/clock_feature.h:
 
+../src/ASF/common2/services/gfx_mono/gfx_mono_menu.h:
+
+../src/config/conf_menu.h:
+
 ../src/ASF/common2/services/gfx_mono/gfx_mono.h:
 
 ../src/ASF/common2/services/gfx_mono/gfx_mono_null.h:
 
-../src/ASF/common2/services/gfx_mono/gfx_mono.h:
-
 ../src/ASF/common2/services/gfx_mono/gfx_mono_framebuffer.h:
 
 ../src/ASF/common2/services/gfx_mono/gfx_mono_generic.h:
+
+../src/ASF/common2/services/gfx_mono/gfx_mono.h:
+
+../src/ASF/common2/services/gfx_mono/sysfont.h:
+
+../src/config/conf_sysfont.h:
+
+../src/ASF/common2/services/gfx_mono/gfx_mono_text.h:
 
 ../src/ASF/common/boards/board.h:
 

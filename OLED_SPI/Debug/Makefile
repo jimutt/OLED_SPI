@@ -45,6 +45,7 @@ SUBDIRS :=  \
 ../src/ASF/common2/services/delay/ \
 ../src/ASF/common2/services/delay/sam0/ \
 ../src/ASF/common2/services/gfx_mono/ \
+../src/ASF/common2/services/gfx_mono/docsrc/ \
 ../src/ASF/common2/services/gfx_mono/tools/ \
 ../src/ASF/common/ \
 ../src/ASF/common/boards/ \
@@ -102,7 +103,10 @@ C_SRCS +=  \
 ../src/ASF/common2/components/display/ssd1306/ssd1306.c \
 ../src/ASF/common2/services/gfx_mono/gfx_mono_framebuffer.c \
 ../src/ASF/common2/services/gfx_mono/gfx_mono_generic.c \
+../src/ASF/common2/services/gfx_mono/gfx_mono_menu.c \
 ../src/ASF/common2/services/gfx_mono/gfx_mono_null.c \
+../src/ASF/common2/services/gfx_mono/gfx_mono_text.c \
+../src/ASF/common2/services/gfx_mono/sysfont.c \
 ../src/ASF/sam0/drivers/sercom/sercom.c \
 ../src/ASF/sam0/drivers/sercom/spi/spi.c \
 ../src/ASF/sam0/drivers/sercom/spi/spi_interrupt.c \
@@ -132,7 +136,10 @@ OBJS +=  \
 src/ASF/common2/components/display/ssd1306/ssd1306.o \
 src/ASF/common2/services/gfx_mono/gfx_mono_framebuffer.o \
 src/ASF/common2/services/gfx_mono/gfx_mono_generic.o \
+src/ASF/common2/services/gfx_mono/gfx_mono_menu.o \
 src/ASF/common2/services/gfx_mono/gfx_mono_null.o \
+src/ASF/common2/services/gfx_mono/gfx_mono_text.o \
+src/ASF/common2/services/gfx_mono/sysfont.o \
 src/ASF/sam0/drivers/sercom/sercom.o \
 src/ASF/sam0/drivers/sercom/spi/spi.o \
 src/ASF/sam0/drivers/sercom/spi/spi_interrupt.o \
@@ -155,7 +162,10 @@ OBJS_AS_ARGS +=  \
 src/ASF/common2/components/display/ssd1306/ssd1306.o \
 src/ASF/common2/services/gfx_mono/gfx_mono_framebuffer.o \
 src/ASF/common2/services/gfx_mono/gfx_mono_generic.o \
+src/ASF/common2/services/gfx_mono/gfx_mono_menu.o \
 src/ASF/common2/services/gfx_mono/gfx_mono_null.o \
+src/ASF/common2/services/gfx_mono/gfx_mono_text.o \
+src/ASF/common2/services/gfx_mono/sysfont.o \
 src/ASF/sam0/drivers/sercom/sercom.o \
 src/ASF/sam0/drivers/sercom/spi/spi.o \
 src/ASF/sam0/drivers/sercom/spi/spi_interrupt.o \
@@ -178,7 +188,10 @@ C_DEPS +=  \
 src/ASF/common2/components/display/ssd1306/ssd1306.d \
 src/ASF/common2/services/gfx_mono/gfx_mono_framebuffer.d \
 src/ASF/common2/services/gfx_mono/gfx_mono_generic.d \
+src/ASF/common2/services/gfx_mono/gfx_mono_menu.d \
 src/ASF/common2/services/gfx_mono/gfx_mono_null.d \
+src/ASF/common2/services/gfx_mono/gfx_mono_text.d \
+src/ASF/common2/services/gfx_mono/sysfont.d \
 src/ASF/sam0/drivers/sercom/sercom.d \
 src/ASF/sam0/drivers/sercom/spi/spi.d \
 src/ASF/sam0/drivers/sercom/spi/spi_interrupt.d \
@@ -201,7 +214,10 @@ C_DEPS_AS_ARGS +=  \
 src/ASF/common2/components/display/ssd1306/ssd1306.d \
 src/ASF/common2/services/gfx_mono/gfx_mono_framebuffer.d \
 src/ASF/common2/services/gfx_mono/gfx_mono_generic.d \
+src/ASF/common2/services/gfx_mono/gfx_mono_menu.d \
 src/ASF/common2/services/gfx_mono/gfx_mono_null.d \
+src/ASF/common2/services/gfx_mono/gfx_mono_text.d \
+src/ASF/common2/services/gfx_mono/sysfont.d \
 src/ASF/sam0/drivers/sercom/sercom.d \
 src/ASF/sam0/drivers/sercom/spi/spi.d \
 src/ASF/sam0/drivers/sercom/spi/spi_interrupt.d \
@@ -235,6 +251,12 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
 
 
 

@@ -8,7 +8,13 @@ src\ASF\common2\services\gfx_mono\gfx_mono_framebuffer.c
 
 src\ASF\common2\services\gfx_mono\gfx_mono_generic.c
 
+src\ASF\common2\services\gfx_mono\gfx_mono_menu.c
+
 src\ASF\common2\services\gfx_mono\gfx_mono_null.c
+
+src\ASF\common2\services\gfx_mono\gfx_mono_text.c
+
+src\ASF\common2\services\gfx_mono\sysfont.c
 
 src\ASF\sam0\drivers\sercom\sercom.c
 
