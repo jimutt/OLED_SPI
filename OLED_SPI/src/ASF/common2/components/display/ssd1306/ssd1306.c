@@ -368,8 +368,9 @@ void ssd1306_write_display() {
 	ssd1306_write_command(7); //Page end
 	
 	//TODO Write complete buffer
-	for(uint16_t i = 0; i < 1024; i++) {
-		ssd1306_write_data(ssd1306_buffer[i]);
+	for(uint16_t i = 0; i < GFX_MONO_LCD_FRAMEBUFFER_SIZE; i++) {
+		//ssd1306_write_data(ssd1306_buffer[i]);
+		ssd1306_write_data(gfx_framebuffer[i]);
 	}
 }
 

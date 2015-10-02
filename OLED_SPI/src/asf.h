@@ -62,6 +62,9 @@
 // From module: Delay routines
 #include <delay.h>
 
+// From module: GFX Monochrome - Monochrome Graphic Library
+#include <gfx_mono.h>
+
 // From module: Generic board support
 #include <board.h>
 

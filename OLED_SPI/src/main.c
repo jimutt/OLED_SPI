@@ -32,6 +32,8 @@
 int main (void)
 {
 	system_init();
+	
+	gfx_mono_init();
 
 	//! the page address to write to
 	uint8_t page_address = 0;
@@ -55,16 +57,17 @@ int main (void)
 	
 	// scroll the display using hardware support in the LCD controller
 	while (true) {
-		
-		//ssd1306_draw_huge_number(15,0, num);
-		ssd1306_set_pixel(num, y);
+		gfx_mono_draw_line(10, 10, 20, 20, GFX_PIXEL_SET);
 		ssd1306_write_display();
+		//ssd1306_draw_huge_number(15,0, num);
+		//ssd1306_set_pixel(num, y);
+		//ssd1306_write_display();
 		//ssd1306_set_coordinate(0, 0);
 		//ssd1306_write_data(0xFF);
 		//ssd1306_set_coordinate(0, 0);
 		//ssd1306_write_data(0xFF);
 
-
+		delay_ms(2000);
 		num++;
 		if(num > 127) {
 			 num = 0;

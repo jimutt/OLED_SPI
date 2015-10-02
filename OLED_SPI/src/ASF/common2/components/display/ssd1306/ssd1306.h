@@ -50,6 +50,7 @@
 #include <port.h>
 #include <spi.h>
 #include <delay.h>
+#include <gfx_mono_null.h>
 
 // controller and OLED configuration file
 #include "conf_ssd1306.h"
