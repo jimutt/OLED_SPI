@@ -139,6 +139,9 @@ extern "C" {
 #define SSD1306_CMD_SET_VERTICAL_SCROLL_AREA        0xA3
 //@}
 
+#define SSD1306_DISPLAY_WIDTH	128U
+#define SSD1306_DISPLAY_HEIGHT	64U
+
 /**
  * \name Interface selection
  *
@@ -166,6 +169,12 @@ void ssd1306_write_display(void);
 void ssd1306_draw_8x16_string(unsigned char, unsigned char, const char *);
 void ssd1306_set_coordinate(unsigned char, unsigned char);
 void ssd1306_clear_display(void);
+
+void ssd1306_draw_huge_number(unsigned char, unsigned char, uint8_t);
+
+void ssd1306_set_pixel(uint8_t, uint8_t);
+
+
 
 /**
  * \brief Read data from the controller
@@ -338,6 +347,10 @@ void ssd1306_init(void);
 //@}
 
 /** @} */
+
+
+// Complete display buffer
+uint8_t ssd1306_buffer[1024];
 
 
 
