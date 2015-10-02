@@ -49,6 +49,7 @@
 #include "compiler.h"
 #include "conf_menu.h"
 #include "gfx_mono.h"
+#include "menu_link.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -120,6 +121,7 @@ struct gfx_mono_menu {
 	PROGMEM_STRING_T title;
 	PROGMEM_STRING_T *strings;
 	uint8_t num_elements;
+	menu_link *element_links;
 	uint8_t current_selection;
 	uint8_t current_page;
 };
