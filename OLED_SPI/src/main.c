@@ -7,8 +7,8 @@
 struct port_config pin_cfg;
 
 void display_menu(menu_link menu) {
-	gfx_prev_menu = gfx_active_menu;
-	gfx_active_menu = menu;
+	gfx_mono_prev_menu = gfx_mono_active_menu;
+	gfx_mono_active_menu = menu;
 	gfx_mono_menu_init(&menu_list[menu]);
 	ssd1306_write_display();
 }
@@ -55,12 +55,15 @@ int main (void)
 	// scroll the display using hardware support in the LCD controller
 	while (true) {
 		if(!port_pin_get_input_level(BTN_MENU_NAV_DOWN)) {
-			gfx_mono_menu_process_key(&menu_list[gfx_active_menu], GFX_MONO_MENU_KEYCODE_DOWN);
+			gfx_mono_menu_process_key(&menu_list[gfx_mono_active_menu], GFX_MONO_MENU_KEYCODE_DOWN);
 			ssd1306_write_display();
 		}
 		if(!port_pin_get_input_level(BTN_MENU_SELECT)) {
-			volatile uint8_t menuChoice = gfx_mono_menu_process_key(&menu_list[gfx_active_menu], GFX_MONO_MENU_KEYCODE_ENTER);
-			menu_link menu = menu_list[gfx_active_menu].element_links[2];
+			volatile uint8_t menuChoice = gfx_mono_menu_process_key(&menu_list[gfx_mono_active_menu], GFX_MONO_MENU_KEYCODE_ENTER);
+			menu_link menu = menu_list[gfx_mono_active_menu].element_links[menuChoice];
+			if(menu == EXIT_MENU) {
+				menu = menu_list[gfx_mono_active_menu].parent;
+			}
 			display_menu(menu);
 			ssd1306_write_display();
 		}

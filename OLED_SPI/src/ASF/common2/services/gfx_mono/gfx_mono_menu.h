@@ -122,6 +122,7 @@ struct gfx_mono_menu {
 	PROGMEM_STRING_T *strings;
 	uint8_t num_elements;
 	menu_link *element_links;
+	menu_link parent;
 	uint8_t current_selection;
 	uint8_t current_page;
 };

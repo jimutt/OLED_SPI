@@ -17,7 +17,8 @@ typedef enum {
 	GSM_LOGGING_MENU,
 	GSM_IDLE_MENU,
 	DISPLAY_MENU,
-	EXIT_MENU
+	NO_EVENT,
+	EXIT_MENU,
 } menu_link;
 
 

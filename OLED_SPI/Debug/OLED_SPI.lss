@@ -3,41 +3,41 @@ OLED_SPI.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00002984  00000000  00000000  00008000  2**2
+  0 .text         000029c8  00000000  00000000  00008000  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .relocate     000000b0  20000000  00002984  00010000  2**2
+  1 .relocate     00000108  20000000  000029c8  00010000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          000008b8  200000b0  00002a34  000100b0  2**2
+  2 .bss          000008b8  20000108  00002ad0  00010108  2**2
                   ALLOC
-  3 .stack        00002000  20000968  000032ec  000100b0  2**0
+  3 .stack        00002000  200009c0  00003388  00010108  2**0
                   ALLOC
-  4 .ARM.attributes 00000028  00000000  00000000  000100b0  2**0
+  4 .ARM.attributes 00000028  00000000  00000000  00010108  2**0
                   CONTENTS, READONLY
-  5 .comment      0000005b  00000000  00000000  000100d8  2**0
+  5 .comment      0000005b  00000000  00000000  00010130  2**0
                   CONTENTS, READONLY
-  6 .debug_info   0001cf0c  00000000  00000000  00010133  2**0
+  6 .debug_info   0001cf1d  00000000  00000000  0001018b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00002e54  00000000  00000000  0002d03f  2**0
+  7 .debug_abbrev 00002e63  00000000  00000000  0002d0a8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    00007da4  00000000  00000000  0002fe93  2**0
+  8 .debug_loc    00007dd2  00000000  00000000  0002ff0b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_aranges 00000538  00000000  00000000  00037c37  2**0
+  9 .debug_aranges 00000538  00000000  00000000  00037cdd  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 000008f0  00000000  00000000  0003816f  2**0
+ 10 .debug_ranges 000008f0  00000000  00000000  00038215  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_macro  00019354  00000000  00000000  00038a5f  2**0
+ 11 .debug_macro  00019354  00000000  00000000  00038b05  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   0000e0a5  00000000  00000000  00051db3  2**0
+ 12 .debug_line   0000e0a8  00000000  00000000  00051e59  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    00085d85  00000000  00000000  0005fe58  2**0
+ 13 .debug_str    00085d9d  00000000  00000000  0005ff01  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_frame  00000d38  00000000  00000000  000e5be0  2**2
+ 14 .debug_frame  00000d40  00000000  00000000  000e5ca0  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <_sfixed>:
-       0:	20002968 	.word	0x20002968
+       0:	200029c0 	.word	0x200029c0
        4:	0000199d 	.word	0x0000199d
        8:	00001999 	.word	0x00001999
        c:	00001999 	.word	0x00001999
@@ -90,9 +90,9 @@ Disassembly of section .text:
       c6:	2301      	movs	r3, #1
       c8:	7023      	strb	r3, [r4, #0]
       ca:	bd10      	pop	{r4, pc}
-      cc:	200000b0 	.word	0x200000b0
+      cc:	20000108 	.word	0x20000108
       d0:	00000000 	.word	0x00000000
-      d4:	00002984 	.word	0x00002984
+      d4:	000029c8 	.word	0x000029c8
 
 000000d8 <frame_dummy>:
       d8:	b508      	push	{r3, lr}
@@ -114,9 +114,9 @@ Disassembly of section .text:
       f8:	bd08      	pop	{r3, pc}
       fa:	46c0      	nop			; (mov r8, r8)
       fc:	00000000 	.word	0x00000000
-     100:	00002984 	.word	0x00002984
-     104:	200000b4 	.word	0x200000b4
-     108:	00002984 	.word	0x00002984
+     100:	000029c8 	.word	0x000029c8
+     104:	2000010c 	.word	0x2000010c
+     108:	000029c8 	.word	0x000029c8
      10c:	00000000 	.word	0x00000000
 
 00000110 <ssd1306_write_command>:
@@ -165,8 +165,8 @@ void ssd1306_write_command(uint8_t command)
      142:	b003      	add	sp, #12
      144:	bdf0      	pop	{r4, r5, r6, r7, pc}
      146:	46c0      	nop			; (mov r8, r8)
-     148:	2000010c 	.word	0x2000010c
-     14c:	20000948 	.word	0x20000948
+     148:	20000164 	.word	0x20000164
+     14c:	200009a0 	.word	0x200009a0
      150:	00000d1d 	.word	0x00000d1d
      154:	41004400 	.word	0x41004400
      158:	00000e09 	.word	0x00000e09
@@ -634,23 +634,23 @@ static inline void delay_cycles(
      2f4:	000012b5 	.word	0x000012b5
      2f8:	00001751 	.word	0x00001751
      2fc:	000f4240 	.word	0x000f4240
-     300:	00001b89 	.word	0x00001b89
+     300:	00001bb5 	.word	0x00001bb5
      304:	41004400 	.word	0x41004400
      308:	e000e010 	.word	0xe000e010
-     30c:	20000948 	.word	0x20000948
+     30c:	200009a0 	.word	0x200009a0
      310:	000012f1 	.word	0x000012f1
      314:	00100002 	.word	0x00100002
      318:	00110002 	.word	0x00110002
      31c:	00120002 	.word	0x00120002
      320:	00130002 	.word	0x00130002
-     324:	2000010c 	.word	0x2000010c
+     324:	20000164 	.word	0x20000164
      328:	42000c00 	.word	0x42000c00
      32c:	00000b05 	.word	0x00000b05
      330:	00001249 	.word	0x00001249
      334:	e000e100 	.word	0xe000e100
      338:	00000111 	.word	0x00000111
-     33c:	20000148 	.word	0x20000148
-     340:	00001c87 	.word	0x00001c87
+     33c:	200001a0 	.word	0x200001a0
+     340:	00001cb3 	.word	0x00001cb3
 
 00000344 <ssd1306_write_data>:
  * data write function is called based on the selected interface.
@@ -692,8 +692,8 @@ void ssd1306_write_data(uint8_t data)
      376:	b003      	add	sp, #12
      378:	bdf0      	pop	{r4, r5, r6, r7, pc}
      37a:	46c0      	nop			; (mov r8, r8)
-     37c:	2000010c 	.word	0x2000010c
-     380:	20000948 	.word	0x20000948
+     37c:	20000164 	.word	0x20000164
+     380:	200009a0 	.word	0x200009a0
      384:	00000d1d 	.word	0x00000d1d
      388:	41004400 	.word	0x41004400
      38c:	00000e09 	.word	0x00000e09
@@ -759,11 +759,11 @@ void ssd1306_write_display() {
 	}
 }
      3ca:	bd70      	pop	{r4, r5, r6, pc}
-     3cc:	2000010c 	.word	0x2000010c
-     3d0:	20000948 	.word	0x20000948
+     3cc:	20000164 	.word	0x20000164
+     3d0:	200009a0 	.word	0x200009a0
      3d4:	00000d1d 	.word	0x00000d1d
      3d8:	00000111 	.word	0x00000111
-     3dc:	20000548 	.word	0x20000548
+     3dc:	200005a0 	.word	0x200005a0
      3e0:	00000345 	.word	0x00000345
 
 000003e4 <ssd1306_clear_display>:
@@ -823,8 +823,8 @@ void ssd1306_clear_display() {
 }
      41c:	bd38      	pop	{r3, r4, r5, pc}
      41e:	46c0      	nop			; (mov r8, r8)
-     420:	2000010c 	.word	0x2000010c
-     424:	20000948 	.word	0x20000948
+     420:	20000164 	.word	0x20000164
+     424:	200009a0 	.word	0x200009a0
      428:	00000d1d 	.word	0x00000d1d
      42c:	00000111 	.word	0x00000111
      430:	00000345 	.word	0x00000345
@@ -841,7 +841,7 @@ void gfx_mono_set_framebuffer(uint8_t *framebuffer)
 }
      438:	4770      	bx	lr
      43a:	46c0      	nop			; (mov r8, r8)
-     43c:	200000cc 	.word	0x200000cc
+     43c:	20000124 	.word	0x20000124
 
 00000440 <gfx_mono_framebuffer_put_page>:
 	gfx_mono_framebuffer_put_page(data_buf, 0, 10, 32);
@@ -881,7 +881,7 @@ void gfx_mono_framebuffer_put_page(gfx_mono_color_t *data, gfx_coord_t page,
      45c:	d1fa      	bne.n	454 <gfx_mono_framebuffer_put_page+0x14>
 }
      45e:	bd10      	pop	{r4, pc}
-     460:	200000cc 	.word	0x200000cc
+     460:	20000124 	.word	0x20000124
 
 00000464 <gfx_mono_framebuffer_put_byte>:
 \endcode
@@ -897,7 +897,7 @@ void gfx_mono_framebuffer_put_byte(gfx_coord_t page, gfx_coord_t column,
      46c:	54ca      	strb	r2, [r1, r3]
 }
      46e:	4770      	bx	lr
-     470:	200000cc 	.word	0x200000cc
+     470:	20000124 	.word	0x20000124
 
 00000474 <gfx_mono_framebuffer_get_byte>:
 	data = gfx_mono_framebuffer_get_byte(0, 0);
@@ -913,7 +913,7 @@ uint8_t gfx_mono_framebuffer_get_byte(gfx_coord_t page, gfx_coord_t column)
      47c:	5c18      	ldrb	r0, [r3, r0]
 }
      47e:	4770      	bx	lr
-     480:	200000cc 	.word	0x200000cc
+     480:	20000124 	.word	0x20000124
 
 00000484 <gfx_mono_framebuffer_draw_pixel>:
  * \param[in] color     Pixel operation
@@ -1459,7 +1459,7 @@ static void menu_draw(struct gfx_mono_menu *menu, bool redraw)
 	uint8_t i;
 	uint8_t line = 1;
 	uint8_t menu_page = menu->current_selection /
-     6b2:	7c00      	ldrb	r0, [r0, #16]
+     6b2:	7c40      	ldrb	r0, [r0, #17]
      6b4:	2103      	movs	r1, #3
      6b6:	4b2a      	ldr	r3, [pc, #168]	; (760 <menu_draw+0xbc>)
      6b8:	4798      	blx	r3
@@ -1467,7 +1467,7 @@ static void menu_draw(struct gfx_mono_menu *menu, bool redraw)
 			GFX_MONO_MENU_ELEMENTS_PER_SCREEN;
 
 	if (menu->current_page != menu_page || redraw == true) {
-     6bc:	7c73      	ldrb	r3, [r6, #17]
+     6bc:	7cb3      	ldrb	r3, [r6, #18]
      6be:	42bb      	cmp	r3, r7
      6c0:	d101      	bne.n	6c6 <menu_draw+0x22>
      6c2:	2c00      	cmp	r4, #0
@@ -1493,7 +1493,7 @@ static void menu_draw(struct gfx_mono_menu *menu, bool redraw)
 	}
 
 	menu->current_page = menu_page;
-     6dc:	7477      	strb	r7, [r6, #17]
+     6dc:	74b7      	strb	r7, [r6, #18]
 
 	/* Clear old indicator icon */
 	gfx_mono_draw_filled_rect(0, SYSFONT_LINESPACING,
@@ -1510,7 +1510,7 @@ static void menu_draw(struct gfx_mono_menu *menu, bool redraw)
 
 	/* Put indicator icon on current selection */
 	gfx_mono_put_bitmap(&menu_bitmap_indicator, 0,
-     6ee:	7c30      	ldrb	r0, [r6, #16]
+     6ee:	7c70      	ldrb	r0, [r6, #17]
      6f0:	2103      	movs	r1, #3
      6f2:	4b1e      	ldr	r3, [pc, #120]	; (76c <menu_draw+0xc8>)
      6f4:	4798      	blx	r3
@@ -1609,10 +1609,10 @@ static void menu_draw(struct gfx_mono_menu *menu, bool redraw)
      75a:	4699      	mov	r9, r3
      75c:	bdf0      	pop	{r4, r5, r6, r7, pc}
      75e:	46c0      	nop			; (mov r8, r8)
-     760:	00001b89 	.word	0x00001b89
+     760:	00001bb5 	.word	0x00001bb5
      764:	000005c1 	.word	0x000005c1
-     768:	200000d0 	.word	0x200000d0
-     76c:	00001c11 	.word	0x00001c11
+     768:	20000128 	.word	0x20000128
+     76c:	00001c3d 	.word	0x00001c3d
      770:	20000000 	.word	0x20000000
      774:	00000601 	.word	0x00000601
      778:	20000008 	.word	0x20000008
@@ -1699,19 +1699,19 @@ uint8_t gfx_mono_menu_process_key(struct gfx_mono_menu *menu, uint8_t keycode)
      7d6:	d11e      	bne.n	816 <gfx_mono_menu_process_key+0x56>
 	case GFX_MONO_MENU_KEYCODE_DOWN:
 		if (menu->current_selection == menu->num_elements - 1) {
-     7d8:	7c03      	ldrb	r3, [r0, #16]
+     7d8:	7c43      	ldrb	r3, [r0, #17]
      7da:	7a02      	ldrb	r2, [r0, #8]
      7dc:	3a01      	subs	r2, #1
      7de:	4293      	cmp	r3, r2
      7e0:	d102      	bne.n	7e8 <gfx_mono_menu_process_key+0x28>
 			menu->current_selection = 0;
      7e2:	2300      	movs	r3, #0
-     7e4:	7403      	strb	r3, [r0, #16]
+     7e4:	7443      	strb	r3, [r0, #17]
      7e6:	e001      	b.n	7ec <gfx_mono_menu_process_key+0x2c>
 		} else {
 			menu->current_selection++;
      7e8:	3301      	adds	r3, #1
-     7ea:	7403      	strb	r3, [r0, #16]
+     7ea:	7443      	strb	r3, [r0, #17]
 		}
 
 		/* Update menu on display */
@@ -1726,18 +1726,18 @@ uint8_t gfx_mono_menu_process_key(struct gfx_mono_menu *menu, uint8_t keycode)
 
 	case GFX_MONO_MENU_KEYCODE_UP:
 		if (menu->current_selection) {
-     7f6:	7c03      	ldrb	r3, [r0, #16]
+     7f6:	7c43      	ldrb	r3, [r0, #17]
      7f8:	2b00      	cmp	r3, #0
      7fa:	d002      	beq.n	802 <gfx_mono_menu_process_key+0x42>
 			menu->current_selection--;
      7fc:	3b01      	subs	r3, #1
-     7fe:	7403      	strb	r3, [r0, #16]
+     7fe:	7443      	strb	r3, [r0, #17]
      800:	e002      	b.n	808 <gfx_mono_menu_process_key+0x48>
 		} else {
 			menu->current_selection = menu->num_elements - 1;
      802:	7a03      	ldrb	r3, [r0, #8]
      804:	3b01      	subs	r3, #1
-     806:	7403      	strb	r3, [r0, #16]
+     806:	7443      	strb	r3, [r0, #17]
 		}
 
 		/* Update menu on display */
@@ -1753,7 +1753,7 @@ uint8_t gfx_mono_menu_process_key(struct gfx_mono_menu *menu, uint8_t keycode)
 	case GFX_MONO_MENU_KEYCODE_ENTER:
 		/* Got what we want. Return selection. */
 		return menu->current_selection;
-     812:	7c00      	ldrb	r0, [r0, #16]
+     812:	7c40      	ldrb	r0, [r0, #17]
      814:	e000      	b.n	818 <gfx_mono_menu_process_key+0x58>
 		/* User pressed "back" key, inform user */
 		return GFX_MONO_MENU_EVENT_EXIT;
@@ -1783,7 +1783,7 @@ void gfx_mono_null_init(void)
 }
      828:	bd08      	pop	{r3, pc}
      82a:	46c0      	nop			; (mov r8, r8)
-     82c:	20000548 	.word	0x20000548
+     82c:	200005a0 	.word	0x200005a0
      830:	00000435 	.word	0x00000435
 
 00000834 <gfx_mono_draw_char>:
@@ -2207,7 +2207,7 @@ enum status_code sercom_set_gclk_generator(
      9a6:	b002      	add	sp, #8
      9a8:	bd10      	pop	{r4, pc}
      9aa:	46c0      	nop			; (mov r8, r8)
-     9ac:	200000d4 	.word	0x200000d4
+     9ac:	2000012c 	.word	0x2000012c
      9b0:	00001869 	.word	0x00001869
      9b4:	000017dd 	.word	0x000017dd
 
@@ -2460,7 +2460,7 @@ uint8_t _sercom_get_sercom_inst_index(
 }
      afc:	b004      	add	sp, #16
      afe:	bd70      	pop	{r4, r5, r6, pc}
-     b00:	00002864 	.word	0x00002864
+     b00:	00002890 	.word	0x00002890
 
 00000b04 <spi_init>:
  */
@@ -3039,7 +3039,7 @@ enum status_code spi_init(
      cf8:	00000969 	.word	0x00000969
      cfc:	00001025 	.word	0x00001025
      d00:	00001209 	.word	0x00001209
-     d04:	20000950 	.word	0x20000950
+     d04:	200009a8 	.word	0x200009a8
      d08:	000009b9 	.word	0x000009b9
      d0c:	00001945 	.word	0x00001945
      d10:	00001885 	.word	0x00001885
@@ -4678,8 +4678,8 @@ static void _spi_read(
 }
     11f8:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
     11fa:	46c0      	nop			; (mov r8, r8)
-    11fc:	20000950 	.word	0x20000950
-    1200:	2000094c 	.word	0x2000094c
+    11fc:	200009a8 	.word	0x200009a8
+    1200:	200009a4 	.word	0x200009a4
 
 00001204 <_sercom_default_handler>:
  */
@@ -4756,10 +4756,10 @@ void _sercom_set_handler(
     1234:	50c1      	str	r1, [r0, r3]
 }
     1236:	bd30      	pop	{r4, r5, pc}
-    1238:	200000d8 	.word	0x200000d8
-    123c:	200000dc 	.word	0x200000dc
+    1238:	20000130 	.word	0x20000130
+    123c:	20000134 	.word	0x20000134
     1240:	00001205 	.word	0x00001205
-    1244:	20000950 	.word	0x20000950
+    1244:	200009a8 	.word	0x200009a8
 
 00001248 <_sercom_get_interrupt_vector>:
  * \retval SYSTEM_INTERRUPT_MODULE_SERCOM6
@@ -4795,8 +4795,8 @@ enum system_interrupt_vector _sercom_get_interrupt_vector(
     1262:	b003      	add	sp, #12
     1264:	bd30      	pop	{r4, r5, pc}
     1266:	46c0      	nop			; (mov r8, r8)
-    1268:	00002874 	.word	0x00002874
-    126c:	00001c75 	.word	0x00001c75
+    1268:	000028a0 	.word	0x000028a0
+    126c:	00001ca1 	.word	0x00001ca1
     1270:	00000ac1 	.word	0x00000ac1
 
 00001274 <SERCOM0_Handler>:
@@ -4809,7 +4809,7 @@ MREPEAT(SERCOM_INST_NUM, _SERCOM_INTERRUPT_HANDLER, ~)
     127a:	2000      	movs	r0, #0
     127c:	4798      	blx	r3
     127e:	bd08      	pop	{r3, pc}
-    1280:	200000dc 	.word	0x200000dc
+    1280:	20000134 	.word	0x20000134
 
 00001284 <SERCOM1_Handler>:
     1284:	b508      	push	{r3, lr}
@@ -4818,7 +4818,7 @@ MREPEAT(SERCOM_INST_NUM, _SERCOM_INTERRUPT_HANDLER, ~)
     128a:	2001      	movs	r0, #1
     128c:	4798      	blx	r3
     128e:	bd08      	pop	{r3, pc}
-    1290:	200000dc 	.word	0x200000dc
+    1290:	20000134 	.word	0x20000134
 
 00001294 <SERCOM2_Handler>:
     1294:	b508      	push	{r3, lr}
@@ -4827,7 +4827,7 @@ MREPEAT(SERCOM_INST_NUM, _SERCOM_INTERRUPT_HANDLER, ~)
     129a:	2002      	movs	r0, #2
     129c:	4798      	blx	r3
     129e:	bd08      	pop	{r3, pc}
-    12a0:	200000dc 	.word	0x200000dc
+    12a0:	20000134 	.word	0x20000134
 
 000012a4 <SERCOM3_Handler>:
     12a4:	b508      	push	{r3, lr}
@@ -4836,7 +4836,7 @@ MREPEAT(SERCOM_INST_NUM, _SERCOM_INTERRUPT_HANDLER, ~)
     12aa:	2003      	movs	r0, #3
     12ac:	4798      	blx	r3
     12ae:	bd08      	pop	{r3, pc}
-    12b0:	200000dc 	.word	0x200000dc
+    12b0:	20000134 	.word	0x20000134
 
 000012b4 <delay_init>:
  *
@@ -4872,7 +4872,7 @@ void delay_init(void)
     12d8:	bd10      	pop	{r4, pc}
     12da:	46c0      	nop			; (mov r8, r8)
     12dc:	00001751 	.word	0x00001751
-    12e0:	00001b89 	.word	0x00001b89
+    12e0:	00001bb5 	.word	0x00001bb5
     12e4:	20000018 	.word	0x20000018
     12e8:	20000014 	.word	0x20000014
     12ec:	e000e010 	.word	0xe000e010
@@ -4989,9 +4989,9 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void __DMB(void)
     1348:	601a      	str	r2, [r3, #0]
 }
     134a:	4770      	bx	lr
-    134c:	200000ec 	.word	0x200000ec
+    134c:	20000144 	.word	0x20000144
     1350:	2000001c 	.word	0x2000001c
-    1354:	200000f0 	.word	0x200000f0
+    1354:	20000148 	.word	0x20000148
 
 00001358 <cpu_irq_leave_critical>:
 void cpu_irq_leave_critical(void)
@@ -5030,8 +5030,8 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void __enable_irq(void)
 	}
 }
     137a:	4770      	bx	lr
-    137c:	200000ec 	.word	0x200000ec
-    1380:	200000f0 	.word	0x200000f0
+    137c:	20000144 	.word	0x20000144
+    1380:	20000148 	.word	0x20000148
     1384:	2000001c 	.word	0x2000001c
 
 00001388 <system_clock_source_get_hz>:
@@ -5181,8 +5181,8 @@ static inline void _system_dfll_wait_for_sync(void)
 	}
 }
     13fe:	bd08      	pop	{r3, pc}
-    1400:	00002878 	.word	0x00002878
-    1404:	200000f4 	.word	0x200000f4
+    1400:	000028a4 	.word	0x000028a4
+    1404:	2000014c 	.word	0x2000014c
     1408:	40000800 	.word	0x40000800
     140c:	007a1200 	.word	0x007a1200
     1410:	00001885 	.word	0x00001885
@@ -5383,7 +5383,7 @@ void system_clock_source_dfll_set_config(
 }
     14b8:	bd10      	pop	{r4, pc}
     14ba:	46c0      	nop			; (mov r8, r8)
-    14bc:	200000f4 	.word	0x200000f4
+    14bc:	2000014c 	.word	0x2000014c
     14c0:	03ff0000 	.word	0x03ff0000
 
 000014c4 <system_clock_source_enable>:
@@ -5582,9 +5582,9 @@ static inline void _system_dfll_wait_for_sync(void)
 	return STATUS_OK;
 }
     1552:	4770      	bx	lr
-    1554:	0000289c 	.word	0x0000289c
+    1554:	000028c8 	.word	0x000028c8
     1558:	40000800 	.word	0x40000800
-    155c:	200000f4 	.word	0x200000f4
+    155c:	2000014c 	.word	0x2000014c
     1560:	0000ff7f 	.word	0x0000ff7f
 
 00001564 <system_clock_init>:
@@ -6345,7 +6345,7 @@ static inline void system_interrupt_leave_critical_section(void)
     17cc:	00001389 	.word	0x00001389
     17d0:	40000c08 	.word	0x40000c08
     17d4:	00001359 	.word	0x00001359
-    17d8:	00001b89 	.word	0x00001b89
+    17d8:	00001bb5 	.word	0x00001bb5
 
 000017dc <system_gclk_chan_enable>:
  *
@@ -7028,14 +7028,14 @@ void Reset_Handler(void)
     1a4c:	41005000 	.word	0x41005000
     1a50:	41004800 	.word	0x41004800
     1a54:	20000000 	.word	0x20000000
-    1a58:	00002984 	.word	0x00002984
-    1a5c:	200000b0 	.word	0x200000b0
-    1a60:	20000968 	.word	0x20000968
-    1a64:	200000b0 	.word	0x200000b0
+    1a58:	000029c8 	.word	0x000029c8
+    1a5c:	20000108 	.word	0x20000108
+    1a60:	200009c0 	.word	0x200009c0
+    1a64:	20000108 	.word	0x20000108
     1a68:	20000004 	.word	0x20000004
     1a6c:	e000ed00 	.word	0xe000ed00
     1a70:	00000000 	.word	0x00000000
-    1a74:	00001c29 	.word	0x00001c29
+    1a74:	00001c55 	.word	0x00001c55
     1a78:	00001ad9 	.word	0x00001ad9
 
 00001a7c <display_menu>:
@@ -7046,12 +7046,12 @@ struct port_config pin_cfg;
 
 void display_menu(menu_link menu) {
     1a7c:	b508      	push	{r3, lr}
-	gfx_prev_menu = gfx_active_menu;
+	gfx_mono_prev_menu = gfx_mono_active_menu;
     1a7e:	4b07      	ldr	r3, [pc, #28]	; (1a9c <display_menu+0x20>)
     1a80:	7819      	ldrb	r1, [r3, #0]
     1a82:	4a07      	ldr	r2, [pc, #28]	; (1aa0 <display_menu+0x24>)
     1a84:	7011      	strb	r1, [r2, #0]
-	gfx_active_menu = menu;
+	gfx_mono_active_menu = menu;
     1a86:	7018      	strb	r0, [r3, #0]
 	gfx_mono_menu_init(&menu_list[menu]);
     1a88:	0083      	lsls	r3, r0, #2
@@ -7066,9 +7066,9 @@ void display_menu(menu_link menu) {
     1a98:	4798      	blx	r3
 }
     1a9a:	bd08      	pop	{r3, pc}
-    1a9c:	20000960 	.word	0x20000960
-    1aa0:	20000967 	.word	0x20000967
-    1aa4:	20000060 	.word	0x20000060
+    1a9c:	200009b8 	.word	0x200009b8
+    1aa0:	200009b9 	.word	0x200009b9
+    1aa4:	20000090 	.word	0x20000090
     1aa8:	00000781 	.word	0x00000781
     1aac:	00000391 	.word	0x00000391
 
@@ -7106,519 +7106,545 @@ void menu_buttons_init() {
 }
     1acc:	bd38      	pop	{r3, r4, r5, pc}
     1ace:	46c0      	nop			; (mov r8, r8)
-    1ad0:	20000964 	.word	0x20000964
+    1ad0:	200009bc 	.word	0x200009bc
     1ad4:	000012f1 	.word	0x000012f1
 
 00001ad8 <main>:
 
 int main (void)
 {
-    1ad8:	b570      	push	{r4, r5, r6, lr}
-    1ada:	b082      	sub	sp, #8
+    1ad8:	b5f0      	push	{r4, r5, r6, r7, lr}
+    1ada:	4647      	mov	r7, r8
+    1adc:	b480      	push	{r7}
+    1ade:	b082      	sub	sp, #8
 	system_init();
-    1adc:	4b1d      	ldr	r3, [pc, #116]	; (1b54 <main+0x7c>)
-    1ade:	4798      	blx	r3
-	delay_init();
-    1ae0:	4b1d      	ldr	r3, [pc, #116]	; (1b58 <main+0x80>)
+    1ae0:	4b27      	ldr	r3, [pc, #156]	; (1b80 <main+0xa8>)
     1ae2:	4798      	blx	r3
-	
-	gfx_mono_init();
-    1ae4:	4b1d      	ldr	r3, [pc, #116]	; (1b5c <main+0x84>)
+	delay_init();
+    1ae4:	4b27      	ldr	r3, [pc, #156]	; (1b84 <main+0xac>)
     1ae6:	4798      	blx	r3
 	
-	menu_buttons_init();
-    1ae8:	4b1d      	ldr	r3, [pc, #116]	; (1b60 <main+0x88>)
+	gfx_mono_init();
+    1ae8:	4b27      	ldr	r3, [pc, #156]	; (1b88 <main+0xb0>)
     1aea:	4798      	blx	r3
+	
+	menu_buttons_init();
+    1aec:	4b27      	ldr	r3, [pc, #156]	; (1b8c <main+0xb4>)
+    1aee:	4798      	blx	r3
 	uint8_t column_address = 0;
 
 	
 
 	// Initialize SPI and SSD1306 controller
 	ssd1306_init();
-    1aec:	4b1d      	ldr	r3, [pc, #116]	; (1b64 <main+0x8c>)
-    1aee:	4798      	blx	r3
+    1af0:	4b27      	ldr	r3, [pc, #156]	; (1b90 <main+0xb8>)
+    1af2:	4798      	blx	r3
  */
 static inline void ssd1306_set_page_address(uint8_t address)
 {
 	// Make sure that the address is 4 bits (only 8 pages)
 	address &= 0x0F;
 	ssd1306_write_command(SSD1306_CMD_SET_PAGE_START_ADDRESS(address));
-    1af0:	20b7      	movs	r0, #183	; 0xb7
-    1af2:	4c1d      	ldr	r4, [pc, #116]	; (1b68 <main+0x90>)
-    1af4:	47a0      	blx	r4
+    1af4:	20b7      	movs	r0, #183	; 0xb7
+    1af6:	4c27      	ldr	r4, [pc, #156]	; (1b94 <main+0xbc>)
+    1af8:	47a0      	blx	r4
  */
 static inline void ssd1306_set_column_address(uint8_t address)
 {
 	// Make sure the address is 7 bits
 	address &= 0x7F;
 	ssd1306_write_command(SSD1306_CMD_COL_ADD_SET_MSB(address >> 4));
-    1af6:	2010      	movs	r0, #16
-    1af8:	47a0      	blx	r4
-	ssd1306_write_command(SSD1306_CMD_COL_ADD_SET_LSB(address & 0x0F));
-    1afa:	2000      	movs	r0, #0
+    1afa:	2010      	movs	r0, #16
     1afc:	47a0      	blx	r4
+	ssd1306_write_command(SSD1306_CMD_COL_ADD_SET_LSB(address & 0x0F));
+    1afe:	2000      	movs	r0, #0
+    1b00:	47a0      	blx	r4
 	ssd1306_set_column_address(0);
 	
 	uint8_t num = GFX_MONO_MENU_KEYCODE_DOWN;
 	uint8_t y = 0;
 
 	ssd1306_clear_display();
-    1afe:	4b1b      	ldr	r3, [pc, #108]	; (1b6c <main+0x94>)
-    1b00:	4798      	blx	r3
+    1b02:	4b25      	ldr	r3, [pc, #148]	; (1b98 <main+0xc0>)
+    1b04:	4798      	blx	r3
 	
 	display_menu(MAIN_MENU);
-    1b02:	2000      	movs	r0, #0
-    1b04:	4b1a      	ldr	r3, [pc, #104]	; (1b70 <main+0x98>)
-    1b06:	4798      	blx	r3
+    1b06:	2000      	movs	r0, #0
+    1b08:	4b24      	ldr	r3, [pc, #144]	; (1b9c <main+0xc4>)
+    1b0a:	4798      	blx	r3
 	
 	// scroll the display using hardware support in the LCD controller
 	while (true) {
 		if(!port_pin_get_input_level(BTN_MENU_NAV_DOWN)) {
-			gfx_mono_menu_process_key(&menu_list[gfx_active_menu], GFX_MONO_MENU_KEYCODE_DOWN);
-    1b08:	4e1a      	ldr	r6, [pc, #104]	; (1b74 <main+0x9c>)
-    1b0a:	4d1b      	ldr	r5, [pc, #108]	; (1b78 <main+0xa0>)
-    1b0c:	4c1b      	ldr	r4, [pc, #108]	; (1b7c <main+0xa4>)
+			gfx_mono_menu_process_key(&menu_list[gfx_mono_active_menu], GFX_MONO_MENU_KEYCODE_DOWN);
+    1b0c:	4e24      	ldr	r6, [pc, #144]	; (1ba0 <main+0xc8>)
+    1b0e:	4d25      	ldr	r5, [pc, #148]	; (1ba4 <main+0xcc>)
+    1b10:	4c25      	ldr	r4, [pc, #148]	; (1ba8 <main+0xd0>)
 		const uint8_t gpio_pin)
 {
 	PortGroup *const port_base = port_get_group_from_gpio_pin(gpio_pin);
 	uint32_t pin_mask  = (1UL << (gpio_pin % 32));
 
 	return (port_base->IN.reg & pin_mask);
-    1b0e:	4b1c      	ldr	r3, [pc, #112]	; (1b80 <main+0xa8>)
-    1b10:	6a1b      	ldr	r3, [r3, #32]
+    1b12:	4b26      	ldr	r3, [pc, #152]	; (1bac <main+0xd4>)
+    1b14:	6a1b      	ldr	r3, [r3, #32]
 	
 	display_menu(MAIN_MENU);
 	
 	// scroll the display using hardware support in the LCD controller
 	while (true) {
 		if(!port_pin_get_input_level(BTN_MENU_NAV_DOWN)) {
-    1b12:	041a      	lsls	r2, r3, #16
-    1b14:	d408      	bmi.n	1b28 <main+0x50>
-			gfx_mono_menu_process_key(&menu_list[gfx_active_menu], GFX_MONO_MENU_KEYCODE_DOWN);
-    1b16:	782b      	ldrb	r3, [r5, #0]
-    1b18:	0098      	lsls	r0, r3, #2
-    1b1a:	18c0      	adds	r0, r0, r3
-    1b1c:	0080      	lsls	r0, r0, #2
-    1b1e:	1830      	adds	r0, r6, r0
-    1b20:	2128      	movs	r1, #40	; 0x28
-    1b22:	47a0      	blx	r4
+    1b16:	0419      	lsls	r1, r3, #16
+    1b18:	d408      	bmi.n	1b2c <main+0x54>
+			gfx_mono_menu_process_key(&menu_list[gfx_mono_active_menu], GFX_MONO_MENU_KEYCODE_DOWN);
+    1b1a:	782b      	ldrb	r3, [r5, #0]
+    1b1c:	0098      	lsls	r0, r3, #2
+    1b1e:	18c0      	adds	r0, r0, r3
+    1b20:	0080      	lsls	r0, r0, #2
+    1b22:	1830      	adds	r0, r6, r0
+    1b24:	2128      	movs	r1, #40	; 0x28
+    1b26:	47a0      	blx	r4
 			ssd1306_write_display();
-    1b24:	4b17      	ldr	r3, [pc, #92]	; (1b84 <main+0xac>)
-    1b26:	4798      	blx	r3
-    1b28:	4b15      	ldr	r3, [pc, #84]	; (1b80 <main+0xa8>)
-    1b2a:	6a1b      	ldr	r3, [r3, #32]
+    1b28:	4b21      	ldr	r3, [pc, #132]	; (1bb0 <main+0xd8>)
+    1b2a:	4798      	blx	r3
+    1b2c:	4b1f      	ldr	r3, [pc, #124]	; (1bac <main+0xd4>)
+    1b2e:	6a1b      	ldr	r3, [r3, #32]
 		}
 		if(!port_pin_get_input_level(BTN_MENU_SELECT)) {
-    1b2c:	045a      	lsls	r2, r3, #17
-    1b2e:	d4ee      	bmi.n	1b0e <main+0x36>
-			volatile uint8_t menuChoice = gfx_mono_menu_process_key(&menu_list[gfx_active_menu], GFX_MONO_MENU_KEYCODE_ENTER);
-    1b30:	4b11      	ldr	r3, [pc, #68]	; (1b78 <main+0xa0>)
-    1b32:	781b      	ldrb	r3, [r3, #0]
-    1b34:	0098      	lsls	r0, r3, #2
-    1b36:	18c3      	adds	r3, r0, r3
-    1b38:	009b      	lsls	r3, r3, #2
-    1b3a:	480e      	ldr	r0, [pc, #56]	; (1b74 <main+0x9c>)
-    1b3c:	18c0      	adds	r0, r0, r3
-    1b3e:	210d      	movs	r1, #13
-    1b40:	4b0e      	ldr	r3, [pc, #56]	; (1b7c <main+0xa4>)
-    1b42:	4798      	blx	r3
-    1b44:	466b      	mov	r3, sp
-    1b46:	71d8      	strb	r0, [r3, #7]
-			menu_link menu = 2;
+    1b30:	045a      	lsls	r2, r3, #17
+    1b32:	d4ee      	bmi.n	1b12 <main+0x3a>
+			volatile uint8_t menuChoice = gfx_mono_menu_process_key(&menu_list[gfx_mono_active_menu], GFX_MONO_MENU_KEYCODE_ENTER);
+    1b34:	4f1a      	ldr	r7, [pc, #104]	; (1ba0 <main+0xc8>)
+    1b36:	4b1b      	ldr	r3, [pc, #108]	; (1ba4 <main+0xcc>)
+    1b38:	4698      	mov	r8, r3
+    1b3a:	781b      	ldrb	r3, [r3, #0]
+    1b3c:	0098      	lsls	r0, r3, #2
+    1b3e:	18c0      	adds	r0, r0, r3
+    1b40:	0080      	lsls	r0, r0, #2
+    1b42:	1838      	adds	r0, r7, r0
+    1b44:	210d      	movs	r1, #13
+    1b46:	4b18      	ldr	r3, [pc, #96]	; (1ba8 <main+0xd0>)
+    1b48:	4798      	blx	r3
+    1b4a:	466a      	mov	r2, sp
+    1b4c:	71d0      	strb	r0, [r2, #7]
+    1b4e:	3207      	adds	r2, #7
+			menu_link menu = menu_list[gfx_mono_active_menu].element_links[menuChoice];
+    1b50:	4641      	mov	r1, r8
+    1b52:	780b      	ldrb	r3, [r1, #0]
+    1b54:	7812      	ldrb	r2, [r2, #0]
+    1b56:	b2d2      	uxtb	r2, r2
+    1b58:	0099      	lsls	r1, r3, #2
+    1b5a:	18c9      	adds	r1, r1, r3
+    1b5c:	0089      	lsls	r1, r1, #2
+    1b5e:	187f      	adds	r7, r7, r1
+    1b60:	68f9      	ldr	r1, [r7, #12]
+    1b62:	5c88      	ldrb	r0, [r1, r2]
+			if(menu == EXIT_MENU) {
+    1b64:	2807      	cmp	r0, #7
+    1b66:	d105      	bne.n	1b74 <main+0x9c>
+				menu = menu_list[gfx_mono_active_menu].parent;
+    1b68:	009a      	lsls	r2, r3, #2
+    1b6a:	18d3      	adds	r3, r2, r3
+    1b6c:	009b      	lsls	r3, r3, #2
+    1b6e:	4a0c      	ldr	r2, [pc, #48]	; (1ba0 <main+0xc8>)
+    1b70:	18d3      	adds	r3, r2, r3
+    1b72:	7c18      	ldrb	r0, [r3, #16]
+			}
 			display_menu(menu);
-    1b48:	2002      	movs	r0, #2
-    1b4a:	4b09      	ldr	r3, [pc, #36]	; (1b70 <main+0x98>)
-    1b4c:	4798      	blx	r3
+    1b74:	4b09      	ldr	r3, [pc, #36]	; (1b9c <main+0xc4>)
+    1b76:	4798      	blx	r3
 			ssd1306_write_display();
-    1b4e:	4b0d      	ldr	r3, [pc, #52]	; (1b84 <main+0xac>)
-    1b50:	4798      	blx	r3
-    1b52:	e7dc      	b.n	1b0e <main+0x36>
-    1b54:	00001975 	.word	0x00001975
-    1b58:	000012b5 	.word	0x000012b5
-    1b5c:	00000821 	.word	0x00000821
-    1b60:	00001ab1 	.word	0x00001ab1
-    1b64:	0000015d 	.word	0x0000015d
-    1b68:	00000111 	.word	0x00000111
-    1b6c:	000003e5 	.word	0x000003e5
-    1b70:	00001a7d 	.word	0x00001a7d
-    1b74:	20000060 	.word	0x20000060
-    1b78:	20000960 	.word	0x20000960
-    1b7c:	000007c1 	.word	0x000007c1
-    1b80:	41004400 	.word	0x41004400
-    1b84:	00000391 	.word	0x00000391
+    1b78:	4b0d      	ldr	r3, [pc, #52]	; (1bb0 <main+0xd8>)
+    1b7a:	4798      	blx	r3
+    1b7c:	e7c9      	b.n	1b12 <main+0x3a>
+    1b7e:	46c0      	nop			; (mov r8, r8)
+    1b80:	00001975 	.word	0x00001975
+    1b84:	000012b5 	.word	0x000012b5
+    1b88:	00000821 	.word	0x00000821
+    1b8c:	00001ab1 	.word	0x00001ab1
+    1b90:	0000015d 	.word	0x0000015d
+    1b94:	00000111 	.word	0x00000111
+    1b98:	000003e5 	.word	0x000003e5
+    1b9c:	00001a7d 	.word	0x00001a7d
+    1ba0:	20000090 	.word	0x20000090
+    1ba4:	200009b8 	.word	0x200009b8
+    1ba8:	000007c1 	.word	0x000007c1
+    1bac:	41004400 	.word	0x41004400
+    1bb0:	00000391 	.word	0x00000391
 
-00001b88 <__aeabi_uidiv>:
-    1b88:	2900      	cmp	r1, #0
-    1b8a:	d034      	beq.n	1bf6 <.udivsi3_skip_div0_test+0x6a>
+00001bb4 <__aeabi_uidiv>:
+    1bb4:	2900      	cmp	r1, #0
+    1bb6:	d034      	beq.n	1c22 <.udivsi3_skip_div0_test+0x6a>
 
-00001b8c <.udivsi3_skip_div0_test>:
-    1b8c:	2301      	movs	r3, #1
-    1b8e:	2200      	movs	r2, #0
-    1b90:	b410      	push	{r4}
-    1b92:	4288      	cmp	r0, r1
-    1b94:	d32c      	bcc.n	1bf0 <.udivsi3_skip_div0_test+0x64>
-    1b96:	2401      	movs	r4, #1
-    1b98:	0724      	lsls	r4, r4, #28
-    1b9a:	42a1      	cmp	r1, r4
-    1b9c:	d204      	bcs.n	1ba8 <.udivsi3_skip_div0_test+0x1c>
-    1b9e:	4281      	cmp	r1, r0
-    1ba0:	d202      	bcs.n	1ba8 <.udivsi3_skip_div0_test+0x1c>
-    1ba2:	0109      	lsls	r1, r1, #4
-    1ba4:	011b      	lsls	r3, r3, #4
-    1ba6:	e7f8      	b.n	1b9a <.udivsi3_skip_div0_test+0xe>
-    1ba8:	00e4      	lsls	r4, r4, #3
-    1baa:	42a1      	cmp	r1, r4
-    1bac:	d204      	bcs.n	1bb8 <.udivsi3_skip_div0_test+0x2c>
-    1bae:	4281      	cmp	r1, r0
-    1bb0:	d202      	bcs.n	1bb8 <.udivsi3_skip_div0_test+0x2c>
-    1bb2:	0049      	lsls	r1, r1, #1
-    1bb4:	005b      	lsls	r3, r3, #1
-    1bb6:	e7f8      	b.n	1baa <.udivsi3_skip_div0_test+0x1e>
-    1bb8:	4288      	cmp	r0, r1
-    1bba:	d301      	bcc.n	1bc0 <.udivsi3_skip_div0_test+0x34>
-    1bbc:	1a40      	subs	r0, r0, r1
-    1bbe:	431a      	orrs	r2, r3
-    1bc0:	084c      	lsrs	r4, r1, #1
-    1bc2:	42a0      	cmp	r0, r4
-    1bc4:	d302      	bcc.n	1bcc <.udivsi3_skip_div0_test+0x40>
-    1bc6:	1b00      	subs	r0, r0, r4
-    1bc8:	085c      	lsrs	r4, r3, #1
-    1bca:	4322      	orrs	r2, r4
-    1bcc:	088c      	lsrs	r4, r1, #2
-    1bce:	42a0      	cmp	r0, r4
-    1bd0:	d302      	bcc.n	1bd8 <.udivsi3_skip_div0_test+0x4c>
-    1bd2:	1b00      	subs	r0, r0, r4
-    1bd4:	089c      	lsrs	r4, r3, #2
-    1bd6:	4322      	orrs	r2, r4
-    1bd8:	08cc      	lsrs	r4, r1, #3
-    1bda:	42a0      	cmp	r0, r4
-    1bdc:	d302      	bcc.n	1be4 <.udivsi3_skip_div0_test+0x58>
-    1bde:	1b00      	subs	r0, r0, r4
-    1be0:	08dc      	lsrs	r4, r3, #3
-    1be2:	4322      	orrs	r2, r4
-    1be4:	2800      	cmp	r0, #0
-    1be6:	d003      	beq.n	1bf0 <.udivsi3_skip_div0_test+0x64>
-    1be8:	091b      	lsrs	r3, r3, #4
-    1bea:	d001      	beq.n	1bf0 <.udivsi3_skip_div0_test+0x64>
-    1bec:	0909      	lsrs	r1, r1, #4
-    1bee:	e7e3      	b.n	1bb8 <.udivsi3_skip_div0_test+0x2c>
-    1bf0:	1c10      	adds	r0, r2, #0
-    1bf2:	bc10      	pop	{r4}
-    1bf4:	4770      	bx	lr
-    1bf6:	2800      	cmp	r0, #0
-    1bf8:	d001      	beq.n	1bfe <.udivsi3_skip_div0_test+0x72>
-    1bfa:	2000      	movs	r0, #0
-    1bfc:	43c0      	mvns	r0, r0
-    1bfe:	b407      	push	{r0, r1, r2}
-    1c00:	4802      	ldr	r0, [pc, #8]	; (1c0c <.udivsi3_skip_div0_test+0x80>)
-    1c02:	a102      	add	r1, pc, #8	; (adr r1, 1c0c <.udivsi3_skip_div0_test+0x80>)
-    1c04:	1840      	adds	r0, r0, r1
-    1c06:	9002      	str	r0, [sp, #8]
-    1c08:	bd03      	pop	{r0, r1, pc}
-    1c0a:	46c0      	nop			; (mov r8, r8)
-    1c0c:	00000019 	.word	0x00000019
+00001bb8 <.udivsi3_skip_div0_test>:
+    1bb8:	2301      	movs	r3, #1
+    1bba:	2200      	movs	r2, #0
+    1bbc:	b410      	push	{r4}
+    1bbe:	4288      	cmp	r0, r1
+    1bc0:	d32c      	bcc.n	1c1c <.udivsi3_skip_div0_test+0x64>
+    1bc2:	2401      	movs	r4, #1
+    1bc4:	0724      	lsls	r4, r4, #28
+    1bc6:	42a1      	cmp	r1, r4
+    1bc8:	d204      	bcs.n	1bd4 <.udivsi3_skip_div0_test+0x1c>
+    1bca:	4281      	cmp	r1, r0
+    1bcc:	d202      	bcs.n	1bd4 <.udivsi3_skip_div0_test+0x1c>
+    1bce:	0109      	lsls	r1, r1, #4
+    1bd0:	011b      	lsls	r3, r3, #4
+    1bd2:	e7f8      	b.n	1bc6 <.udivsi3_skip_div0_test+0xe>
+    1bd4:	00e4      	lsls	r4, r4, #3
+    1bd6:	42a1      	cmp	r1, r4
+    1bd8:	d204      	bcs.n	1be4 <.udivsi3_skip_div0_test+0x2c>
+    1bda:	4281      	cmp	r1, r0
+    1bdc:	d202      	bcs.n	1be4 <.udivsi3_skip_div0_test+0x2c>
+    1bde:	0049      	lsls	r1, r1, #1
+    1be0:	005b      	lsls	r3, r3, #1
+    1be2:	e7f8      	b.n	1bd6 <.udivsi3_skip_div0_test+0x1e>
+    1be4:	4288      	cmp	r0, r1
+    1be6:	d301      	bcc.n	1bec <.udivsi3_skip_div0_test+0x34>
+    1be8:	1a40      	subs	r0, r0, r1
+    1bea:	431a      	orrs	r2, r3
+    1bec:	084c      	lsrs	r4, r1, #1
+    1bee:	42a0      	cmp	r0, r4
+    1bf0:	d302      	bcc.n	1bf8 <.udivsi3_skip_div0_test+0x40>
+    1bf2:	1b00      	subs	r0, r0, r4
+    1bf4:	085c      	lsrs	r4, r3, #1
+    1bf6:	4322      	orrs	r2, r4
+    1bf8:	088c      	lsrs	r4, r1, #2
+    1bfa:	42a0      	cmp	r0, r4
+    1bfc:	d302      	bcc.n	1c04 <.udivsi3_skip_div0_test+0x4c>
+    1bfe:	1b00      	subs	r0, r0, r4
+    1c00:	089c      	lsrs	r4, r3, #2
+    1c02:	4322      	orrs	r2, r4
+    1c04:	08cc      	lsrs	r4, r1, #3
+    1c06:	42a0      	cmp	r0, r4
+    1c08:	d302      	bcc.n	1c10 <.udivsi3_skip_div0_test+0x58>
+    1c0a:	1b00      	subs	r0, r0, r4
+    1c0c:	08dc      	lsrs	r4, r3, #3
+    1c0e:	4322      	orrs	r2, r4
+    1c10:	2800      	cmp	r0, #0
+    1c12:	d003      	beq.n	1c1c <.udivsi3_skip_div0_test+0x64>
+    1c14:	091b      	lsrs	r3, r3, #4
+    1c16:	d001      	beq.n	1c1c <.udivsi3_skip_div0_test+0x64>
+    1c18:	0909      	lsrs	r1, r1, #4
+    1c1a:	e7e3      	b.n	1be4 <.udivsi3_skip_div0_test+0x2c>
+    1c1c:	1c10      	adds	r0, r2, #0
+    1c1e:	bc10      	pop	{r4}
+    1c20:	4770      	bx	lr
+    1c22:	2800      	cmp	r0, #0
+    1c24:	d001      	beq.n	1c2a <.udivsi3_skip_div0_test+0x72>
+    1c26:	2000      	movs	r0, #0
+    1c28:	43c0      	mvns	r0, r0
+    1c2a:	b407      	push	{r0, r1, r2}
+    1c2c:	4802      	ldr	r0, [pc, #8]	; (1c38 <.udivsi3_skip_div0_test+0x80>)
+    1c2e:	a102      	add	r1, pc, #8	; (adr r1, 1c38 <.udivsi3_skip_div0_test+0x80>)
+    1c30:	1840      	adds	r0, r0, r1
+    1c32:	9002      	str	r0, [sp, #8]
+    1c34:	bd03      	pop	{r0, r1, pc}
+    1c36:	46c0      	nop			; (mov r8, r8)
+    1c38:	00000019 	.word	0x00000019
 
-00001c10 <__aeabi_uidivmod>:
-    1c10:	2900      	cmp	r1, #0
-    1c12:	d0f0      	beq.n	1bf6 <.udivsi3_skip_div0_test+0x6a>
-    1c14:	b503      	push	{r0, r1, lr}
-    1c16:	f7ff ffb9 	bl	1b8c <.udivsi3_skip_div0_test>
-    1c1a:	bc0e      	pop	{r1, r2, r3}
-    1c1c:	4342      	muls	r2, r0
-    1c1e:	1a89      	subs	r1, r1, r2
-    1c20:	4718      	bx	r3
-    1c22:	46c0      	nop			; (mov r8, r8)
+00001c3c <__aeabi_uidivmod>:
+    1c3c:	2900      	cmp	r1, #0
+    1c3e:	d0f0      	beq.n	1c22 <.udivsi3_skip_div0_test+0x6a>
+    1c40:	b503      	push	{r0, r1, lr}
+    1c42:	f7ff ffb9 	bl	1bb8 <.udivsi3_skip_div0_test>
+    1c46:	bc0e      	pop	{r1, r2, r3}
+    1c48:	4342      	muls	r2, r0
+    1c4a:	1a89      	subs	r1, r1, r2
+    1c4c:	4718      	bx	r3
+    1c4e:	46c0      	nop			; (mov r8, r8)
 
-00001c24 <__aeabi_idiv0>:
-    1c24:	4770      	bx	lr
-    1c26:	46c0      	nop			; (mov r8, r8)
+00001c50 <__aeabi_idiv0>:
+    1c50:	4770      	bx	lr
+    1c52:	46c0      	nop			; (mov r8, r8)
 
-00001c28 <__libc_init_array>:
-    1c28:	b570      	push	{r4, r5, r6, lr}
-    1c2a:	4b0e      	ldr	r3, [pc, #56]	; (1c64 <__libc_init_array+0x3c>)
-    1c2c:	4d0e      	ldr	r5, [pc, #56]	; (1c68 <__libc_init_array+0x40>)
-    1c2e:	2400      	movs	r4, #0
-    1c30:	1aed      	subs	r5, r5, r3
-    1c32:	10ad      	asrs	r5, r5, #2
-    1c34:	1c1e      	adds	r6, r3, #0
-    1c36:	42ac      	cmp	r4, r5
-    1c38:	d004      	beq.n	1c44 <__libc_init_array+0x1c>
-    1c3a:	00a3      	lsls	r3, r4, #2
-    1c3c:	58f3      	ldr	r3, [r6, r3]
-    1c3e:	4798      	blx	r3
-    1c40:	3401      	adds	r4, #1
-    1c42:	e7f8      	b.n	1c36 <__libc_init_array+0xe>
-    1c44:	f000 fe8e 	bl	2964 <_init>
-    1c48:	4b08      	ldr	r3, [pc, #32]	; (1c6c <__libc_init_array+0x44>)
-    1c4a:	4d09      	ldr	r5, [pc, #36]	; (1c70 <__libc_init_array+0x48>)
-    1c4c:	2400      	movs	r4, #0
-    1c4e:	1aed      	subs	r5, r5, r3
-    1c50:	10ad      	asrs	r5, r5, #2
-    1c52:	1c1e      	adds	r6, r3, #0
-    1c54:	42ac      	cmp	r4, r5
-    1c56:	d004      	beq.n	1c62 <__libc_init_array+0x3a>
-    1c58:	00a3      	lsls	r3, r4, #2
-    1c5a:	58f3      	ldr	r3, [r6, r3]
-    1c5c:	4798      	blx	r3
-    1c5e:	3401      	adds	r4, #1
-    1c60:	e7f8      	b.n	1c54 <__libc_init_array+0x2c>
-    1c62:	bd70      	pop	{r4, r5, r6, pc}
-    1c64:	00002970 	.word	0x00002970
-    1c68:	00002970 	.word	0x00002970
-    1c6c:	00002970 	.word	0x00002970
-    1c70:	00002974 	.word	0x00002974
+00001c54 <__libc_init_array>:
+    1c54:	b570      	push	{r4, r5, r6, lr}
+    1c56:	4b0e      	ldr	r3, [pc, #56]	; (1c90 <__libc_init_array+0x3c>)
+    1c58:	4d0e      	ldr	r5, [pc, #56]	; (1c94 <__libc_init_array+0x40>)
+    1c5a:	2400      	movs	r4, #0
+    1c5c:	1aed      	subs	r5, r5, r3
+    1c5e:	10ad      	asrs	r5, r5, #2
+    1c60:	1c1e      	adds	r6, r3, #0
+    1c62:	42ac      	cmp	r4, r5
+    1c64:	d004      	beq.n	1c70 <__libc_init_array+0x1c>
+    1c66:	00a3      	lsls	r3, r4, #2
+    1c68:	58f3      	ldr	r3, [r6, r3]
+    1c6a:	4798      	blx	r3
+    1c6c:	3401      	adds	r4, #1
+    1c6e:	e7f8      	b.n	1c62 <__libc_init_array+0xe>
+    1c70:	f000 fe9a 	bl	29a8 <_init>
+    1c74:	4b08      	ldr	r3, [pc, #32]	; (1c98 <__libc_init_array+0x44>)
+    1c76:	4d09      	ldr	r5, [pc, #36]	; (1c9c <__libc_init_array+0x48>)
+    1c78:	2400      	movs	r4, #0
+    1c7a:	1aed      	subs	r5, r5, r3
+    1c7c:	10ad      	asrs	r5, r5, #2
+    1c7e:	1c1e      	adds	r6, r3, #0
+    1c80:	42ac      	cmp	r4, r5
+    1c82:	d004      	beq.n	1c8e <__libc_init_array+0x3a>
+    1c84:	00a3      	lsls	r3, r4, #2
+    1c86:	58f3      	ldr	r3, [r6, r3]
+    1c88:	4798      	blx	r3
+    1c8a:	3401      	adds	r4, #1
+    1c8c:	e7f8      	b.n	1c80 <__libc_init_array+0x2c>
+    1c8e:	bd70      	pop	{r4, r5, r6, pc}
+    1c90:	000029b4 	.word	0x000029b4
+    1c94:	000029b4 	.word	0x000029b4
+    1c98:	000029b4 	.word	0x000029b4
+    1c9c:	000029b8 	.word	0x000029b8
 
-00001c74 <memcpy>:
-    1c74:	b510      	push	{r4, lr}
-    1c76:	2300      	movs	r3, #0
-    1c78:	4293      	cmp	r3, r2
-    1c7a:	d003      	beq.n	1c84 <memcpy+0x10>
-    1c7c:	5ccc      	ldrb	r4, [r1, r3]
-    1c7e:	54c4      	strb	r4, [r0, r3]
-    1c80:	3301      	adds	r3, #1
-    1c82:	e7f9      	b.n	1c78 <memcpy+0x4>
-    1c84:	bd10      	pop	{r4, pc}
+00001ca0 <memcpy>:
+    1ca0:	b510      	push	{r4, lr}
+    1ca2:	2300      	movs	r3, #0
+    1ca4:	4293      	cmp	r3, r2
+    1ca6:	d003      	beq.n	1cb0 <memcpy+0x10>
+    1ca8:	5ccc      	ldrb	r4, [r1, r3]
+    1caa:	54c4      	strb	r4, [r0, r3]
+    1cac:	3301      	adds	r3, #1
+    1cae:	e7f9      	b.n	1ca4 <memcpy+0x4>
+    1cb0:	bd10      	pop	{r4, pc}
 
-00001c86 <memset>:
-    1c86:	1c03      	adds	r3, r0, #0
-    1c88:	1882      	adds	r2, r0, r2
-    1c8a:	4293      	cmp	r3, r2
-    1c8c:	d002      	beq.n	1c94 <memset+0xe>
-    1c8e:	7019      	strb	r1, [r3, #0]
-    1c90:	3301      	adds	r3, #1
-    1c92:	e7fa      	b.n	1c8a <memset+0x4>
-    1c94:	4770      	bx	lr
+00001cb2 <memset>:
+    1cb2:	1c03      	adds	r3, r0, #0
+    1cb4:	1882      	adds	r2, r0, r2
+    1cb6:	4293      	cmp	r3, r2
+    1cb8:	d002      	beq.n	1cc0 <memset+0xe>
+    1cba:	7019      	strb	r1, [r3, #0]
+    1cbc:	3301      	adds	r3, #1
+    1cbe:	e7fa      	b.n	1cb6 <memset+0x4>
+    1cc0:	4770      	bx	lr
 	...
 
-00001c98 <arrow_right_data>:
-    1c98:	e0f0 80c0 0000 070f 0103 0000               ............
+00001cc4 <arrow_right_data>:
+    1cc4:	e0f0 80c0 0000 070f 0103 0000               ............
 
-00001ca4 <sysfont_glyphs>:
+00001cd0 <sysfont_glyphs>:
 	...
-    1cc8:	0000 0030 0030 0030 0030 0030 0030 0030     ..0.0.0.0.0.0.0.
-    1cd8:	0000 0030 0030 0000 0000 0000 0000 0000     ..0.0...........
-    1ce8:	0000 006c 006c 006c 006c 0000 0000 0000     ..l.l.l.l.......
+    1cf4:	0000 0030 0030 0030 0030 0030 0030 0030     ..0.0.0.0.0.0.0.
+    1d04:	0000 0030 0030 0000 0000 0000 0000 0000     ..0.0...........
+    1d14:	0000 006c 006c 006c 006c 0000 0000 0000     ..l.l.l.l.......
 	...
-    1d0c:	0048 0048 00fc 0048 0048 0048 00fc 0048     H.H...H.H.H...H.
-    1d1c:	0048 0000 0000 0000 0000 0000 0000 0010     H...............
-    1d2c:	0010 003c 0040 0030 0008 0004 0078 0010     ..<.@.0.....x...
-    1d3c:	0010 0000 0000 0000 0000 0000 0000 0000     ................
-    1d4c:	007c 00a4 00a8 0048 0010 0014 002a 004a     |.....H.....*.J.
-    1d5c:	0044 0000 0000 0000 0000 0000 0000 0070     D.............p.
-    1d6c:	0088 0088 0088 0070 0088 008a 008a 008c     ......p.........
-    1d7c:	0070 0000 0000 0000 0000 0000 0000 0010     p...............
-    1d8c:	0010 0010 0000 0000 0000 0000 0000 0000     ................
+    1d38:	0048 0048 00fc 0048 0048 0048 00fc 0048     H.H...H.H.H...H.
+    1d48:	0048 0000 0000 0000 0000 0000 0000 0010     H...............
+    1d58:	0010 003c 0040 0030 0008 0004 0078 0010     ..<.@.0.....x...
+    1d68:	0010 0000 0000 0000 0000 0000 0000 0000     ................
+    1d78:	007c 00a4 00a8 0048 0010 0014 002a 004a     |.....H.....*.J.
+    1d88:	0044 0000 0000 0000 0000 0000 0000 0070     D.............p.
+    1d98:	0088 0088 0088 0070 0088 008a 008a 008c     ......p.........
+    1da8:	0070 0000 0000 0000 0000 0000 0000 0010     p...............
+    1db8:	0010 0010 0000 0000 0000 0000 0000 0000     ................
 	...
-    1da8:	0008 0010 0010 0020 0020 0020 0020 0020     ...... . . . . .
-    1db8:	0020 0010 0010 0008 0000 0000 0000 0000      ...............
-    1dc8:	0020 0010 0010 0008 0008 0008 0008 0008      ...............
-    1dd8:	0008 0010 0010 0020 0000 0000 0000 0000     ...... .........
-    1de8:	0000 0028 0010 007c 0010 0028 0000 0000     ..(...|...(.....
+    1dd4:	0008 0010 0010 0020 0020 0020 0020 0020     ...... . . . . .
+    1de4:	0020 0010 0010 0008 0000 0000 0000 0000      ...............
+    1df4:	0020 0010 0010 0008 0008 0008 0008 0008      ...............
+    1e04:	0008 0010 0010 0020 0000 0000 0000 0000     ...... .........
+    1e14:	0000 0028 0010 007c 0010 0028 0000 0000     ..(...|...(.....
 	...
-    1e10:	0010 0010 0010 00fe 0010 0010 0010 0000     ................
+    1e3c:	0010 0010 0010 00fe 0010 0010 0010 0000     ................
 	...
-    1e38:	0000 0018 0018 0030 0020 0000 0000 0000     ......0. .......
+    1e64:	0000 0018 0018 0030 0020 0000 0000 0000     ......0. .......
 	...
-    1e54:	0000 00fe 0000 0000 0000 0000 0000 0000     ................
+    1e80:	0000 00fe 0000 0000 0000 0000 0000 0000     ................
 	...
-    1e78:	0000 0018 0018 0000 0000 0000 0000 0000     ................
-    1e88:	0000 0000 0004 0008 0008 0010 0010 0020     .............. .
-    1e98:	0020 0040 0040 0000 0000 0000 0000 0000      .@.@...........
-    1ea8:	0000 0078 0084 0084 008c 0094 00a4 00c4     ..x.............
-    1eb8:	0084 0084 0078 0000 0000 0000 0000 0000     ....x...........
-    1ec8:	0000 0010 0030 0050 0010 0010 0010 0010     ....0.P.........
-    1ed8:	0010 0010 007c 0000 0000 0000 0000 0000     ....|...........
-    1ee8:	0000 0070 0088 0008 0008 0010 0010 0020     ..p........... .
-    1ef8:	0020 0040 00fc 0000 0000 0000 0000 0000      .@.............
-    1f08:	0000 0070 0088 0008 0008 0030 0008 0008     ..p.......0.....
-    1f18:	0008 0088 0070 0000 0000 0000 0000 0000     ....p...........
-    1f28:	0000 0008 0018 0028 0028 0048 0088 0088     ......(.(.H.....
-    1f38:	00fc 0008 0008 0000 0000 0000 0000 0000     ................
-    1f48:	0000 007c 0080 0080 00b8 00c4 0004 0004     ..|.............
-    1f58:	0004 0084 0078 0000 0000 0000 0000 0000     ....x...........
-    1f68:	0000 0038 0040 0080 0080 00b0 00c8 0084     ..8.@...........
-    1f78:	0084 0048 0030 0000 0000 0000 0000 0000     ..H.0...........
-    1f88:	0000 00fc 0004 0004 0008 0008 0010 0010     ................
-    1f98:	0020 0020 0040 0000 0000 0000 0000 0000      . .@...........
-    1fa8:	0000 0078 0084 0084 0084 0078 0084 0084     ..x.......x.....
-    1fb8:	0084 0084 0078 0000 0000 0000 0000 0000     ....x...........
-    1fc8:	0000 0078 0084 0084 0084 008c 0074 0004     ..x.........t...
-    1fd8:	0008 0010 00e0 0000 0000 0000 0000 0000     ................
+    1ea4:	0000 0018 0018 0000 0000 0000 0000 0000     ................
+    1eb4:	0000 0000 0004 0008 0008 0010 0010 0020     .............. .
+    1ec4:	0020 0040 0040 0000 0000 0000 0000 0000      .@.@...........
+    1ed4:	0000 0078 0084 0084 008c 0094 00a4 00c4     ..x.............
+    1ee4:	0084 0084 0078 0000 0000 0000 0000 0000     ....x...........
+    1ef4:	0000 0010 0030 0050 0010 0010 0010 0010     ....0.P.........
+    1f04:	0010 0010 007c 0000 0000 0000 0000 0000     ....|...........
+    1f14:	0000 0070 0088 0008 0008 0010 0010 0020     ..p........... .
+    1f24:	0020 0040 00fc 0000 0000 0000 0000 0000      .@.............
+    1f34:	0000 0070 0088 0008 0008 0030 0008 0008     ..p.......0.....
+    1f44:	0008 0088 0070 0000 0000 0000 0000 0000     ....p...........
+    1f54:	0000 0008 0018 0028 0028 0048 0088 0088     ......(.(.H.....
+    1f64:	00fc 0008 0008 0000 0000 0000 0000 0000     ................
+    1f74:	0000 007c 0080 0080 00b8 00c4 0004 0004     ..|.............
+    1f84:	0004 0084 0078 0000 0000 0000 0000 0000     ....x...........
+    1f94:	0000 0038 0040 0080 0080 00b0 00c8 0084     ..8.@...........
+    1fa4:	0084 0048 0030 0000 0000 0000 0000 0000     ..H.0...........
+    1fb4:	0000 00fc 0004 0004 0008 0008 0010 0010     ................
+    1fc4:	0020 0020 0040 0000 0000 0000 0000 0000      . .@...........
+    1fd4:	0000 0078 0084 0084 0084 0078 0084 0084     ..x.......x.....
+    1fe4:	0084 0084 0078 0000 0000 0000 0000 0000     ....x...........
+    1ff4:	0000 0078 0084 0084 0084 008c 0074 0004     ..x.........t...
+    2004:	0008 0010 00e0 0000 0000 0000 0000 0000     ................
 	...
-    1ff0:	0000 0030 0030 0000 0000 0030 0030 0000     ..0.0.....0.0...
+    201c:	0000 0030 0030 0000 0000 0030 0030 0000     ..0.0.....0.0...
 	...
-    2010:	0000 0060 0060 0000 0000 0060 0060 00c0     ..`.`.....`.`...
-    2020:	0080 0000 0000 0000 0000 0000 0000 0000     ................
-    2030:	0004 0018 0060 0080 0060 0018 0004 0000     ....`...`.......
+    203c:	0000 0060 0060 0000 0000 0060 0060 00c0     ..`.`.....`.`...
+    204c:	0080 0000 0000 0000 0000 0000 0000 0000     ................
+    205c:	0004 0018 0060 0080 0060 0018 0004 0000     ....`...`.......
 	...
-    2050:	0000 007e 0000 0000 007e 0000 0000 0000     ..~.....~.......
+    207c:	0000 007e 0000 0000 007e 0000 0000 0000     ..~.....~.......
 	...
-    2070:	0040 0030 000c 0002 000c 0030 0040 0000     @.0.......0.@...
+    209c:	0040 0030 000c 0002 000c 0030 0040 0000     @.0.......0.@...
 	...
-    2088:	0000 0070 0088 0008 0008 0010 0020 0020     ..p......... . .
-    2098:	0000 0020 0020 0000 0000 0000 0000 0000     .. . ...........
-    20a8:	0000 0000 0000 003c 0042 00ba 00aa 00aa     ......<.B.......
-    20b8:	00aa 00bc 0040 003c 0000 0000 0000 0000     ....@.<.........
-    20c8:	0000 0010 0010 0028 0028 0028 0044 007c     ......(.(.(.D.|.
-    20d8:	0044 0082 0082 0000 0000 0000 0000 0000     D...............
-    20e8:	0000 00f0 0088 0088 0088 00f0 0088 0088     ................
-    20f8:	0088 0088 00f0 0000 0000 0000 0000 0000     ................
-    2108:	0000 0038 0044 0080 0080 0080 0080 0080     ..8.D...........
-    2118:	0080 0044 0038 0000 0000 0000 0000 0000     ..D.8...........
-    2128:	0000 00f0 0088 0084 0084 0084 0084 0084     ................
-    2138:	0084 0088 00f0 0000 0000 0000 0000 0000     ................
-    2148:	0000 007c 0040 0040 0040 0078 0040 0040     ..|.@.@.@.x.@.@.
-    2158:	0040 0040 007c 0000 0000 0000 0000 0000     @.@.|...........
-    2168:	0000 007c 0040 0040 0040 0040 0078 0040     ..|.@.@.@.@.x.@.
-    2178:	0040 0040 0040 0000 0000 0000 0000 0000     @.@.@...........
-    2188:	0000 0038 0044 0080 0080 0080 009c 0084     ..8.D...........
-    2198:	0084 0044 003c 0000 0000 0000 0000 0000     ..D.<...........
-    21a8:	0000 0084 0084 0084 0084 00fc 0084 0084     ................
-    21b8:	0084 0084 0084 0000 0000 0000 0000 0000     ................
-    21c8:	0000 007c 0010 0010 0010 0010 0010 0010     ..|.............
-    21d8:	0010 0010 007c 0000 0000 0000 0000 0000     ....|...........
-    21e8:	0000 00f8 0008 0008 0008 0008 0008 0008     ................
-    21f8:	0008 0010 00e0 0000 0000 0000 0000 0000     ................
-    2208:	0000 0084 0084 0088 0090 00a0 00d0 0088     ................
-    2218:	0088 0084 0084 0000 0000 0000 0000 0000     ................
-    2228:	0000 0080 0080 0080 0080 0080 0080 0080     ................
-    2238:	0080 0080 00fc 0000 0000 0000 0000 0000     ................
-    2248:	0000 0084 0084 00cc 00cc 00b4 00b4 0084     ................
-    2258:	0084 0084 0084 0000 0000 0000 0000 0000     ................
-    2268:	0000 0084 00c4 00c4 00a4 00a4 0094 0094     ................
-    2278:	008c 008c 0084 0000 0000 0000 0000 0000     ................
-    2288:	0000 0030 0048 0084 0084 0084 0084 0084     ..0.H...........
-    2298:	0084 0048 0030 0000 0000 0000 0000 0000     ..H.0...........
-    22a8:	0000 00f0 0088 0084 0084 0084 0088 00f0     ................
-    22b8:	0080 0080 0080 0000 0000 0000 0000 0000     ................
-    22c8:	0000 0030 0048 0084 0084 0084 0084 0084     ..0.H...........
-    22d8:	0084 0048 0030 0020 001c 0000 0000 0000     ..H.0. .........
-    22e8:	0000 00f0 0088 0084 0084 0088 00f0 0090     ................
-    22f8:	0088 0084 0084 0000 0000 0000 0000 0000     ................
-    2308:	0000 0078 0084 0080 0040 0030 0008 0004     ..x.....@.0.....
-    2318:	0004 0084 0078 0000 0000 0000 0000 0000     ....x...........
-    2328:	0000 00fe 0010 0010 0010 0010 0010 0010     ................
-    2338:	0010 0010 0010 0000 0000 0000 0000 0000     ................
-    2348:	0000 0084 0084 0084 0084 0084 0084 0084     ................
-    2358:	0084 0084 0078 0000 0000 0000 0000 0000     ....x...........
-    2368:	0000 0082 0082 0044 0044 0044 0044 0028     ......D.D.D.D.(.
-    2378:	0028 0028 0010 0000 0000 0000 0000 0000     (.(.............
-    2388:	0000 0084 0084 0084 0084 00b4 00b4 00b4     ................
-    2398:	0078 0048 0048 0000 0000 0000 0000 0000     x.H.H...........
-    23a8:	0000 0082 0044 0044 0028 0010 0010 0028     ....D.D.(.....(.
-    23b8:	0044 0044 0082 0000 0000 0000 0000 0000     D.D.............
-    23c8:	0000 0082 0044 0044 0028 0028 0028 0010     ....D.D.(.(.(...
-    23d8:	0010 0010 0010 0000 0000 0000 0000 0000     ................
-    23e8:	0000 00fc 0004 0008 0008 0010 0010 0020     .............. .
-    23f8:	0040 0040 00fe 0000 0000 0000 0000 0000     @.@.............
-    2408:	00e0 0080 0080 0080 0080 0080 0080 0080     ................
-    2418:	0080 0080 0080 00e0 0000 0000 0000 0000     ................
-    2428:	0000 0040 0040 0020 0020 0010 0010 0008     ..@.@. . .......
-    2438:	0008 0004 0004 0000 0000 0000 0000 0000     ................
-    2448:	00e0 0020 0020 0020 0020 0020 0020 0020     .. . . . . . . .
-    2458:	0020 0020 0020 00e0 0000 0000 0000 0000      . . ...........
-    2468:	0000 0010 0028 0044 0000 0000 0000 0000     ....(.D.........
+    20b4:	0000 0070 0088 0008 0008 0010 0020 0020     ..p......... . .
+    20c4:	0000 0020 0020 0000 0000 0000 0000 0000     .. . ...........
+    20d4:	0000 0000 0000 003c 0042 00ba 00aa 00aa     ......<.B.......
+    20e4:	00aa 00bc 0040 003c 0000 0000 0000 0000     ....@.<.........
+    20f4:	0000 0010 0010 0028 0028 0028 0044 007c     ......(.(.(.D.|.
+    2104:	0044 0082 0082 0000 0000 0000 0000 0000     D...............
+    2114:	0000 00f0 0088 0088 0088 00f0 0088 0088     ................
+    2124:	0088 0088 00f0 0000 0000 0000 0000 0000     ................
+    2134:	0000 0038 0044 0080 0080 0080 0080 0080     ..8.D...........
+    2144:	0080 0044 0038 0000 0000 0000 0000 0000     ..D.8...........
+    2154:	0000 00f0 0088 0084 0084 0084 0084 0084     ................
+    2164:	0084 0088 00f0 0000 0000 0000 0000 0000     ................
+    2174:	0000 007c 0040 0040 0040 0078 0040 0040     ..|.@.@.@.x.@.@.
+    2184:	0040 0040 007c 0000 0000 0000 0000 0000     @.@.|...........
+    2194:	0000 007c 0040 0040 0040 0040 0078 0040     ..|.@.@.@.@.x.@.
+    21a4:	0040 0040 0040 0000 0000 0000 0000 0000     @.@.@...........
+    21b4:	0000 0038 0044 0080 0080 0080 009c 0084     ..8.D...........
+    21c4:	0084 0044 003c 0000 0000 0000 0000 0000     ..D.<...........
+    21d4:	0000 0084 0084 0084 0084 00fc 0084 0084     ................
+    21e4:	0084 0084 0084 0000 0000 0000 0000 0000     ................
+    21f4:	0000 007c 0010 0010 0010 0010 0010 0010     ..|.............
+    2204:	0010 0010 007c 0000 0000 0000 0000 0000     ....|...........
+    2214:	0000 00f8 0008 0008 0008 0008 0008 0008     ................
+    2224:	0008 0010 00e0 0000 0000 0000 0000 0000     ................
+    2234:	0000 0084 0084 0088 0090 00a0 00d0 0088     ................
+    2244:	0088 0084 0084 0000 0000 0000 0000 0000     ................
+    2254:	0000 0080 0080 0080 0080 0080 0080 0080     ................
+    2264:	0080 0080 00fc 0000 0000 0000 0000 0000     ................
+    2274:	0000 0084 0084 00cc 00cc 00b4 00b4 0084     ................
+    2284:	0084 0084 0084 0000 0000 0000 0000 0000     ................
+    2294:	0000 0084 00c4 00c4 00a4 00a4 0094 0094     ................
+    22a4:	008c 008c 0084 0000 0000 0000 0000 0000     ................
+    22b4:	0000 0030 0048 0084 0084 0084 0084 0084     ..0.H...........
+    22c4:	0084 0048 0030 0000 0000 0000 0000 0000     ..H.0...........
+    22d4:	0000 00f0 0088 0084 0084 0084 0088 00f0     ................
+    22e4:	0080 0080 0080 0000 0000 0000 0000 0000     ................
+    22f4:	0000 0030 0048 0084 0084 0084 0084 0084     ..0.H...........
+    2304:	0084 0048 0030 0020 001c 0000 0000 0000     ..H.0. .........
+    2314:	0000 00f0 0088 0084 0084 0088 00f0 0090     ................
+    2324:	0088 0084 0084 0000 0000 0000 0000 0000     ................
+    2334:	0000 0078 0084 0080 0040 0030 0008 0004     ..x.....@.0.....
+    2344:	0004 0084 0078 0000 0000 0000 0000 0000     ....x...........
+    2354:	0000 00fe 0010 0010 0010 0010 0010 0010     ................
+    2364:	0010 0010 0010 0000 0000 0000 0000 0000     ................
+    2374:	0000 0084 0084 0084 0084 0084 0084 0084     ................
+    2384:	0084 0084 0078 0000 0000 0000 0000 0000     ....x...........
+    2394:	0000 0082 0082 0044 0044 0044 0044 0028     ......D.D.D.D.(.
+    23a4:	0028 0028 0010 0000 0000 0000 0000 0000     (.(.............
+    23b4:	0000 0084 0084 0084 0084 00b4 00b4 00b4     ................
+    23c4:	0078 0048 0048 0000 0000 0000 0000 0000     x.H.H...........
+    23d4:	0000 0082 0044 0044 0028 0010 0010 0028     ....D.D.(.....(.
+    23e4:	0044 0044 0082 0000 0000 0000 0000 0000     D.D.............
+    23f4:	0000 0082 0044 0044 0028 0028 0028 0010     ....D.D.(.(.(...
+    2404:	0010 0010 0010 0000 0000 0000 0000 0000     ................
+    2414:	0000 00fc 0004 0008 0008 0010 0010 0020     .............. .
+    2424:	0040 0040 00fe 0000 0000 0000 0000 0000     @.@.............
+    2434:	00e0 0080 0080 0080 0080 0080 0080 0080     ................
+    2444:	0080 0080 0080 00e0 0000 0000 0000 0000     ................
+    2454:	0000 0040 0040 0020 0020 0010 0010 0008     ..@.@. . .......
+    2464:	0008 0004 0004 0000 0000 0000 0000 0000     ................
+    2474:	00e0 0020 0020 0020 0020 0020 0020 0020     .. . . . . . . .
+    2484:	0020 0020 0020 00e0 0000 0000 0000 0000      . . ...........
+    2494:	0000 0010 0028 0044 0000 0000 0000 0000     ....(.D.........
 	...
-    249c:	007c 0000 0000 0000 0000 0000 0000 0020     |............. .
-    24ac:	0010 0008 0000 0000 0000 0000 0000 0000     ................
+    24c8:	007c 0000 0000 0000 0000 0000 0000 0020     |............. .
+    24d8:	0010 0008 0000 0000 0000 0000 0000 0000     ................
 	...
-    24d0:	0078 0004 0004 007c 0084 008c 0076 0000     x.....|.....v...
+    24fc:	0078 0004 0004 007c 0084 008c 0076 0000     x.....|.....v...
 	...
-    24e8:	0080 0080 0080 0080 00b8 00c4 0084 0084     ................
-    24f8:	0084 0088 00f0 0000 0000 0000 0000 0000     ................
+    2514:	0080 0080 0080 0080 00b8 00c4 0084 0084     ................
+    2524:	0084 0088 00f0 0000 0000 0000 0000 0000     ................
 	...
-    2510:	007c 0080 0080 0080 0080 0080 007c 0000     |...........|...
+    253c:	007c 0080 0080 0080 0080 0080 007c 0000     |...........|...
 	...
-    2528:	0002 0002 0002 0002 003e 0042 0082 0082     ........>.B.....
-    2538:	0082 0042 003e 0000 0000 0000 0000 0000     ..B.>...........
+    2554:	0002 0002 0002 0002 003e 0042 0082 0082     ........>.B.....
+    2564:	0082 0042 003e 0000 0000 0000 0000 0000     ..B.>...........
 	...
-    2550:	007c 0082 0082 00fe 0080 0080 007e 0000     |...........~...
+    257c:	007c 0082 0082 00fe 0080 0080 007e 0000     |...........~...
 	...
-    2568:	0000 001c 0020 0020 00fc 0020 0020 0020     .... . ... . . .
-    2578:	0020 0020 00fc 0000 0000 0000 0000 0000      . .............
+    2594:	0000 001c 0020 0020 00fc 0020 0020 0020     .... . ... . . .
+    25a4:	0020 0020 00fc 0000 0000 0000 0000 0000      . .............
 	...
-    2590:	007c 0084 0084 0084 0084 008c 0074 0004     |...........t...
-    25a0:	0044 0038 0000 0000 0080 0080 0080 0080     D.8.............
-    25b0:	00b8 00c4 0084 0084 0084 0084 0084 0000     ................
+    25bc:	007c 0084 0084 0084 0084 008c 0074 0004     |...........t...
+    25cc:	0044 0038 0000 0000 0080 0080 0080 0080     D.8.............
+    25dc:	00b8 00c4 0084 0084 0084 0084 0084 0000     ................
 	...
-    25c8:	0000 0010 0000 0000 0070 0010 0010 0010     ........p.......
-    25d8:	0010 0010 007c 0000 0000 0000 0000 0000     ....|...........
-    25e8:	0000 0008 0000 0000 0078 0008 0008 0008     ........x.......
-    25f8:	0008 0008 0008 0008 0010 00e0 0000 0000     ................
-    2608:	0080 0080 0080 0080 0088 0090 00a0 00e0     ................
-    2618:	0090 0088 0084 0000 0000 0000 0000 0000     ................
-    2628:	0000 00f0 0010 0010 0010 0010 0010 0010     ................
-    2638:	0010 0010 00fe 0000 0000 0000 0000 0000     ................
+    25f4:	0000 0010 0000 0000 0070 0010 0010 0010     ........p.......
+    2604:	0010 0010 007c 0000 0000 0000 0000 0000     ....|...........
+    2614:	0000 0008 0000 0000 0078 0008 0008 0008     ........x.......
+    2624:	0008 0008 0008 0008 0010 00e0 0000 0000     ................
+    2634:	0080 0080 0080 0080 0088 0090 00a0 00e0     ................
+    2644:	0090 0088 0084 0000 0000 0000 0000 0000     ................
+    2654:	0000 00f0 0010 0010 0010 0010 0010 0010     ................
+    2664:	0010 0010 00fe 0000 0000 0000 0000 0000     ................
 	...
-    2650:	00ac 00d4 0094 0094 0094 0094 0094 0000     ................
+    267c:	00ac 00d4 0094 0094 0094 0094 0094 0000     ................
 	...
-    2670:	00b8 00c4 0084 0084 0084 0084 0084 0000     ................
+    269c:	00b8 00c4 0084 0084 0084 0084 0084 0000     ................
 	...
-    2690:	0078 0084 0084 0084 0084 0084 0078 0000     x...........x...
+    26bc:	0078 0084 0084 0084 0084 0084 0078 0000     x...........x...
 	...
-    26b0:	00b8 00c4 0084 0084 0084 0084 00f8 0080     ................
-    26c0:	0080 0080 0000 0000 0000 0000 0000 0000     ................
-    26d0:	007c 0084 0084 0084 0084 0084 007c 0004     |...........|...
-    26e0:	0004 0004 0000 0000 0000 0000 0000 0000     ................
-    26f0:	00cc 0030 0020 0020 0020 0020 00f8 0000     ..0. . . . .....
+    26dc:	00b8 00c4 0084 0084 0084 0084 00f8 0080     ................
+    26ec:	0080 0080 0000 0000 0000 0000 0000 0000     ................
+    26fc:	007c 0084 0084 0084 0084 0084 007c 0004     |...........|...
+    270c:	0004 0004 0000 0000 0000 0000 0000 0000     ................
+    271c:	00cc 0030 0020 0020 0020 0020 00f8 0000     ..0. . . . .....
 	...
-    2710:	007c 0080 0080 0078 0004 0004 00f8 0000     |.....x.........
+    273c:	007c 0080 0080 0078 0004 0004 00f8 0000     |.....x.........
 	...
-    272c:	0000 0020 00fc 0020 0020 0020 0020 0020     .. ... . . . . .
-    273c:	001c 0000 0000 0000 0000 0000 0000 0000     ................
-    274c:	0000 0000 0088 0088 0088 0088 0088 0088     ................
-    275c:	0074 0000 0000 0000 0000 0000 0000 0000     t...............
-    276c:	0000 0000 0082 0044 0044 0028 0028 0010     ......D.D.(.(...
-    277c:	0010 0000 0000 0000 0000 0000 0000 0000     ................
-    278c:	0000 0000 0084 0084 00b4 00b4 0048 0048     ............H.H.
-    279c:	0048 0000 0000 0000 0000 0000 0000 0000     H...............
-    27ac:	0000 0000 0044 0028 0028 0010 0028 0044     ....D.(.(...(.D.
-    27bc:	0044 0000 0000 0000 0000 0000 0000 0000     D...............
-    27cc:	0000 0000 0082 0044 0044 0028 0028 0028     ......D.D.(.(.(.
-    27dc:	0010 0010 0020 0020 0000 0000 0000 0000     .... . .........
-    27ec:	0000 0000 00fc 0004 0008 0010 0020 0040     ............ .@.
-    27fc:	00fc 0000 0000 0000 0000 0000 0008 0010     ................
-    280c:	0010 0008 0008 0010 0010 0008 0008 0010     ................
-    281c:	0010 0008 0000 0000 0000 0000 0010 0010     ................
-    282c:	0010 0010 0010 0000 0000 0010 0010 0010     ................
-    283c:	0010 0010 0000 0000 0000 0000 0020 0010     ............ ...
-    284c:	0010 0020 0020 0010 0010 0020 0020 0010     .. . ..... . ...
-    285c:	0010 0020 0000 0000 0800 4200 0c00 4200     .. ........B...B
-    286c:	1000 4200 1400 4200 0a09 0c0b 139c 0000     ...B...B........
-    287c:	13f8 0000 13f8 0000 1396 0000 1396 0000     ................
-    288c:	13b2 0000 13a2 0000 13b8 0000 13e6 0000     ................
-    289c:	14f0 0000 1550 0000 1550 0000 14d0 0000     ....P...P.......
-    28ac:	14e2 0000 14fe 0000 14d4 0000 150c 0000     ................
-    28bc:	1540 0000 6553 7474 6e69 7367 0000 0000     @...Settings....
-    28cc:	5347 004d 6f4c 6767 6e69 2067 7266 7165     GSM.Logging freq
-    28dc:	002e 0000 6449 656c 4d20 646f 0065 0000     ....Idle Mode...
-    28ec:	6142 6b63 0000 0000 3031 7320 6365 0000     Back....10 sec..
-    28fc:	3033 7320 6365 0000 2031 696d 006e 0000     30 sec..1 min...
-    290c:	2035 696d 006e 0000 3031 6d20 6e69 0000     5 min...10 min..
-    291c:	3033 6d20 6e69 0000 2031 6f68 7275 0000     30 min..1 hour..
-    292c:	7554 6e72 6f20 6666 0000 0000 6f4d 7564     Turn off....Modu
-    293c:	656c 0000 6449 656c 6d20 646f 0065 0000     le..Idle mode...
-    294c:	6f4c 6767 6e69 0067 6944 7073 616c 0079     Logging.Display.
-    295c:	7845 7469 0000 0000                         Exit....
+    2758:	0000 0020 00fc 0020 0020 0020 0020 0020     .. ... . . . . .
+    2768:	001c 0000 0000 0000 0000 0000 0000 0000     ................
+    2778:	0000 0000 0088 0088 0088 0088 0088 0088     ................
+    2788:	0074 0000 0000 0000 0000 0000 0000 0000     t...............
+    2798:	0000 0000 0082 0044 0044 0028 0028 0010     ......D.D.(.(...
+    27a8:	0010 0000 0000 0000 0000 0000 0000 0000     ................
+    27b8:	0000 0000 0084 0084 00b4 00b4 0048 0048     ............H.H.
+    27c8:	0048 0000 0000 0000 0000 0000 0000 0000     H...............
+    27d8:	0000 0000 0044 0028 0028 0010 0028 0044     ....D.(.(...(.D.
+    27e8:	0044 0000 0000 0000 0000 0000 0000 0000     D...............
+    27f8:	0000 0000 0082 0044 0044 0028 0028 0028     ......D.D.(.(.(.
+    2808:	0010 0010 0020 0020 0000 0000 0000 0000     .... . .........
+    2818:	0000 0000 00fc 0004 0008 0010 0020 0040     ............ .@.
+    2828:	00fc 0000 0000 0000 0000 0000 0008 0010     ................
+    2838:	0010 0008 0008 0010 0010 0008 0008 0010     ................
+    2848:	0010 0008 0000 0000 0000 0000 0010 0010     ................
+    2858:	0010 0010 0010 0000 0000 0010 0010 0010     ................
+    2868:	0010 0010 0000 0000 0000 0000 0020 0010     ............ ...
+    2878:	0010 0020 0020 0010 0010 0020 0020 0010     .. . ..... . ...
+    2888:	0010 0020 0000 0000 0800 4200 0c00 4200     .. ........B...B
+    2898:	1000 4200 1400 4200 0a09 0c0b 139c 0000     ...B...B........
+    28a8:	13f8 0000 13f8 0000 1396 0000 1396 0000     ................
+    28b8:	13b2 0000 13a2 0000 13b8 0000 13e6 0000     ................
+    28c8:	14f0 0000 1550 0000 1550 0000 14d0 0000     ....P...P.......
+    28d8:	14e2 0000 14fe 0000 14d4 0000 150c 0000     ................
+    28e8:	1540 0000 6553 7474 6e69 7367 0000 0000     @...Settings....
+    28f8:	5347 004d 5347 204d 6f4d 7564 656c 0000     GSM.GSM Module..
+    2908:	6f4c 6767 6e69 2067 7266 7165 002e 0000     Logging freq....
+    2918:	6449 656c 4d20 646f 0065 0000 6944 7073     Idle Mode...Disp
+    2928:	616c 0079 6c53 6565 2070 6f6d 6564 0000     lay.Sleep mode..
+    2938:	6f50 6577 0072 0000 6142 6b63 0000 0000     Power...Back....
+    2948:	3031 7320 6365 0000 3033 7320 6365 0000     10 sec..30 sec..
+    2958:	2031 696d 006e 0000 2035 696d 006e 0000     1 min...5 min...
+    2968:	3031 6d20 6e69 0000 3033 6d20 6e69 0000     10 min..30 min..
+    2978:	2031 6f68 7275 0000 7554 6e72 6f20 6666     1 hour..Turn off
+    2988:	0000 0000 6449 656c 6d20 646f 0065 0000     ....Idle mode...
+    2998:	6f4c 6767 6e69 0067 7845 7469 0000 0000     Logging.Exit....
 
-00002964 <_init>:
-    2964:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-    2966:	46c0      	nop			; (mov r8, r8)
-    2968:	bcf8      	pop	{r3, r4, r5, r6, r7}
-    296a:	bc08      	pop	{r3}
-    296c:	469e      	mov	lr, r3
-    296e:	4770      	bx	lr
+000029a8 <_init>:
+    29a8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    29aa:	46c0      	nop			; (mov r8, r8)
+    29ac:	bcf8      	pop	{r3, r4, r5, r6, r7}
+    29ae:	bc08      	pop	{r3}
+    29b0:	469e      	mov	lr, r3
+    29b2:	4770      	bx	lr
 
-00002970 <__init_array_start>:
-    2970:	000000d9 	.word	0x000000d9
+000029b4 <__init_array_start>:
+    29b4:	000000d9 	.word	0x000000d9
 
-00002974 <_fini>:
-    2974:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-    2976:	46c0      	nop			; (mov r8, r8)
-    2978:	bcf8      	pop	{r3, r4, r5, r6, r7}
-    297a:	bc08      	pop	{r3}
-    297c:	469e      	mov	lr, r3
-    297e:	4770      	bx	lr
+000029b8 <_fini>:
+    29b8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    29ba:	46c0      	nop			; (mov r8, r8)
+    29bc:	bcf8      	pop	{r3, r4, r5, r6, r7}
+    29be:	bc08      	pop	{r3}
+    29c0:	469e      	mov	lr, r3
+    29c2:	4770      	bx	lr
 
-00002980 <__fini_array_start>:
-    2980:	000000b1 	.word	0x000000b1
+000029c4 <__fini_array_start>:
+    29c4:	000000b1 	.word	0x000000b1
