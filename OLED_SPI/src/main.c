@@ -48,6 +48,8 @@ int main (void)
 				volatile uint8_t menuChoice = gfx_mono_menu_process_key(&menu_list[gfx_mono_active_menu], GFX_MONO_MENU_KEYCODE_ENTER);
 				menu_link menu = menu_list[gfx_mono_active_menu].element_links[menuChoice];
 				if(menu == EXIT_MENU) {
+					menu_list[gfx_mono_active_menu].current_page = 0;
+					menu_list[gfx_mono_active_menu].current_selection = 0;
 					menu = menu_list[gfx_mono_active_menu].parent;
 				}
 				display_menu(menu);
