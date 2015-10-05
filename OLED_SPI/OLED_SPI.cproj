@@ -33,8 +33,9 @@
           <option id="common2.components.display.ssd1306" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common2.services.gfx_mono" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common2.services.gfx_mono.menu" value="Add" config="" content-id="Atmel.ASF" />
-          <option id="sam0.drivers.system" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam0.drivers.port" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam0.drivers.system" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam0.drivers.tc" value="Add" config="callback" content-id="Atmel.ASF" />
           <option id="sam0.utils.linker_scripts" value="Add" config="" content-id="Atmel.ASF" />
         </options>
         <configurations>
@@ -217,6 +218,10 @@
           <file path="src/ASF/common2/services/gfx_mono/gfx_mono_menu.c" framework="" version="3.21.0" source="common2\services\gfx_mono\gfx_mono_menu.c" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/common2/services/gfx_mono/gfx_mono_menu.h" framework="" version="3.21.0" source="common2\services\gfx_mono\gfx_mono_menu.h" changed="False" content-id="Atmel.ASF" />
           <file path="src/Config/conf_menu.h" framework="" version="3.21.0" source="common2\services\gfx_mono\module_config\conf_menu.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/tc/tc_interrupt.c" framework="" version="3.21.0" source="sam0\drivers\tc\tc_interrupt.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/tc/tc_interrupt.h" framework="" version="3.21.0" source="sam0\drivers\tc\tc_interrupt.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/tc/tc.h" framework="" version="3.21.0" source="sam0\drivers\tc\tc.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam0/drivers/tc/tc_sam_d_r/tc.c" framework="" version="3.21.0" source="sam0\drivers\tc\tc_sam_d_r\tc.c" changed="False" content-id="Atmel.ASF" />
         </files>
         <documentation help="http://asf.atmel.com/docs/3.21.0/common.applications.user_application.sam0_system.user_board.atsamd21e18a/html/index.html" />
         <offline-documentation help="" />
@@ -256,6 +261,7 @@
       <Value>ARM_MATH_CM0=true</Value>
       <Value>SYSTICK_MODE</Value>
       <Value>SPI_CALLBACK_MODE=true</Value>
+      <Value>TC_ASYNC=true</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.DefaultIncludePath>False</armgcc.compiler.directories.DefaultIncludePath>
@@ -291,6 +297,8 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
       <Value>../src/ASF/common2/services/gfx_mono</Value>
+      <Value>../src/ASF/sam0/drivers/tc</Value>
+      <Value>../src/ASF/sam0/drivers/tc/tc_sam_d_r</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
@@ -313,7 +321,7 @@
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
   <armgcc.linker.miscellaneous.LinkerFlags>-Wl,--entry=Reset_Handler -Wl,--cref -mthumb -T../src/ASF/sam0/utils/linker_scripts/samd21/gcc/samd21e18a_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
-  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM0=true -DBOARD=USER_BOARD -DSYSTICK_MODE -DSPI_CALLBACK_MODE=true</armgcc.preprocessingassembler.general.AssemblerFlags>
+  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM0=true -DBOARD=USER_BOARD -DSYSTICK_MODE -DSPI_CALLBACK_MODE=true -DTC_ASYNC=true</armgcc.preprocessingassembler.general.AssemblerFlags>
   <armgcc.preprocessingassembler.general.DefaultIncludePath>False</armgcc.preprocessingassembler.general.DefaultIncludePath>
   <armgcc.preprocessingassembler.general.IncludePaths>
     <ListValues>
@@ -347,6 +355,8 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
       <Value>../src/ASF/common2/services/gfx_mono</Value>
+      <Value>../src/ASF/sam0/drivers/tc</Value>
+      <Value>../src/ASF/sam0/drivers/tc/tc_sam_d_r</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
@@ -367,6 +377,7 @@
       <Value>ARM_MATH_CM0=true</Value>
       <Value>SYSTICK_MODE</Value>
       <Value>SPI_CALLBACK_MODE=true</Value>
+      <Value>TC_ASYNC=true</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.DefaultIncludePath>False</armgcc.compiler.directories.DefaultIncludePath>
@@ -402,6 +413,8 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
       <Value>../src/ASF/common2/services/gfx_mono</Value>
+      <Value>../src/ASF/sam0/drivers/tc</Value>
+      <Value>../src/ASF/sam0/drivers/tc/tc_sam_d_r</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -426,7 +439,7 @@
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
   <armgcc.linker.miscellaneous.LinkerFlags>-Wl,--entry=Reset_Handler -Wl,--cref -mthumb -T../src/ASF/sam0/utils/linker_scripts/samd21/gcc/samd21e18a_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
-  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM0=true -DBOARD=USER_BOARD -DSYSTICK_MODE -DSPI_CALLBACK_MODE=true</armgcc.preprocessingassembler.general.AssemblerFlags>
+  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM0=true -DBOARD=USER_BOARD -DSYSTICK_MODE -DSPI_CALLBACK_MODE=true -DTC_ASYNC=true</armgcc.preprocessingassembler.general.AssemblerFlags>
   <armgcc.preprocessingassembler.general.DefaultIncludePath>False</armgcc.preprocessingassembler.general.DefaultIncludePath>
   <armgcc.preprocessingassembler.general.IncludePaths>
     <ListValues>
@@ -460,6 +473,8 @@
       <Value>../src/ASF/sam0/drivers/sercom</Value>
       <Value>../src/ASF/sam0/drivers/sercom/spi</Value>
       <Value>../src/ASF/common2/services/gfx_mono</Value>
+      <Value>../src/ASF/sam0/drivers/tc</Value>
+      <Value>../src/ASF/sam0/drivers/tc/tc_sam_d_r</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -507,6 +522,8 @@
     <Folder Include="src\ASF\sam0\drivers\system\power\power_sam_d_r\" />
     <Folder Include="src\ASF\sam0\drivers\system\reset\" />
     <Folder Include="src\ASF\sam0\drivers\system\reset\reset_sam_d_r\" />
+    <Folder Include="src\ASF\sam0\drivers\tc\" />
+    <Folder Include="src\ASF\sam0\drivers\tc\tc_sam_d_r\" />
     <Folder Include="src\ASF\sam0\utils\" />
     <Folder Include="src\ASF\sam0\utils\cmsis\" />
     <Folder Include="src\ASF\sam0\utils\cmsis\samd21\" />
@@ -535,7 +552,34 @@
     <Compile Include="src\ASF\common2\components\display\ssd1306\ssd1306.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\config\globals.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\menu_list.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam0\drivers\tc\tc.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam0\drivers\tc\tc_interrupt.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam0\drivers\tc\tc_interrupt.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam0\drivers\tc\tc_sam_d_r\tc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\config\menus.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\menus.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\menu_buttons.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\menu_buttons.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\menu_link.h">

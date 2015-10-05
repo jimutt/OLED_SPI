@@ -4,6 +4,14 @@
 
 src\ASF\common2\components\display\ssd1306\ssd1306.c
 
+src\ASF\sam0\drivers\tc\tc_interrupt.c
+
+src\ASF\sam0\drivers\tc\tc_sam_d_r\tc.c
+
+src\config\menus.c
+
+src\menu_buttons.c
+
 src\ASF\common2\services\gfx_mono\gfx_mono_framebuffer.c
 
 src\ASF\common2\services\gfx_mono\gfx_mono_generic.c
