@@ -131,9 +131,8 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/common2/services/gfx_mono/gfx_mono_null.h \
  ../src/config/conf_ssd1306.h ../src/ASF/sam0/drivers/tc/tc.h \
  ../src/ASF/sam0/drivers/tc/tc_interrupt.h \
- ../src/ASF/sam0/drivers/tc/tc.h ../src/menu_list.h \
- ../src/config/globals.h ../src/menu_buttons.h ../src/menus.h \
- ../src/menu_link.h
+ ../src/ASF/sam0/drivers/tc/tc.h ../src/menu_list.h ../src/globals.h \
+ ../src/menu_buttons.h ../src/menus.h ../src/menu_link.h ../src/views.h
 
 ../src/asf.h:
 
@@ -415,10 +414,12 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\arm\ gcc\native\4.8.1443\arm-gnu
 
 ../src/menu_list.h:
 
-../src/config/globals.h:
+../src/globals.h:
 
 ../src/menu_buttons.h:
 
 ../src/menus.h:
 
 ../src/menu_link.h:
+
+../src/views.h:

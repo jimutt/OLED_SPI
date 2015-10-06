@@ -16,6 +16,7 @@ menu_link gfx_mono_active_menu;
 menu_link gfx_mono_prev_menu;
 
 void display_menu(menu_link);
+uint8_t is_view(menu_link);
 
 
 #endif /* MENUS_H_ */

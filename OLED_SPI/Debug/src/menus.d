@@ -1,4 +1,4 @@
-src/config/menus.d src/config/menus.o: ../src/config/menus.c ../src/asf.h \
+src/menus.d src/menus.o: ../src/menus.c ../src/asf.h \
  ../src/ASF/sam0/utils/compiler.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\arm\ gcc\native\4.8.1443\arm-gnu-toolchain\lib\gcc\arm-none-eabi\4.8.4\include\stddef.h \
  ../src/ASF/common/utils/parts.h ../src/ASF/sam0/utils/status_codes.h \
@@ -131,7 +131,8 @@ src/config/menus.d src/config/menus.o: ../src/config/menus.c ../src/asf.h \
  ../src/ASF/common2/services/gfx_mono/gfx_mono_null.h \
  ../src/config/conf_ssd1306.h ../src/ASF/sam0/drivers/tc/tc.h \
  ../src/ASF/sam0/drivers/tc/tc_interrupt.h \
- ../src/ASF/sam0/drivers/tc/tc.h ../src/menus.h ../src/menu_link.h
+ ../src/ASF/sam0/drivers/tc/tc.h ../src/menus.h ../src/asf.h \
+ ../src/menu_link.h
 
 ../src/asf.h:
 
@@ -412,5 +413,7 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\arm\ gcc\native\4.8.1443\arm-gnu
 ../src/ASF/sam0/drivers/tc/tc.h:
 
 ../src/menus.h:
+
+../src/asf.h:
 
 ../src/menu_link.h:

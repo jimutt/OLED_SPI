@@ -26,8 +26,8 @@ void menu_buttons_init(void) {
 }
 
 void btn_timer_read_callback(struct tc_module *const module_inst) {
-	bool nav_down_state = port_pin_get_input_level(btn_nav_down.pin);
-	bool nav_select_state = port_pin_get_input_level(btn_nav_select.pin);
+	volatile bool nav_down_state = port_pin_get_input_level(btn_nav_down.pin);
+	volatile bool nav_select_state = port_pin_get_input_level(btn_nav_select.pin);
 	
 	if(!nav_down_state && btn_nav_down.lastState == true) {
 		btn_nav_down.active = 1;

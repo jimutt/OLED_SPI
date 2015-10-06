@@ -4,11 +4,13 @@
 
 src\ASF\common2\components\display\ssd1306\ssd1306.c
 
+src\menus.c
+
+src\views.c
+
 src\ASF\sam0\drivers\tc\tc_interrupt.c
 
 src\ASF\sam0\drivers\tc\tc_sam_d_r\tc.c
-
-src\config\menus.c
 
 src\menu_buttons.c
 

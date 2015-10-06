@@ -9,8 +9,14 @@
 #ifndef MENU_LINK_H_
 #define MENU_LINK_H_
 
+#define VIEW_MAX_INDEX 3
+
 
 typedef enum {
+	SPEED_VIEW,
+	TRIP_VIEW_0,
+	TRIP_VIEW_1,
+	HEIGHT_VIEW,
 	MAIN_MENU,
 	GSM_MENU,
 	GSM_MODULE_MENU,

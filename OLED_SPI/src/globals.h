@@ -20,6 +20,14 @@ typedef struct {
 	uint8_t lastState;
 } button;
 
+typedef struct {
+	uint8_t speed;
+	uint8_t lat;
+	uint8_t lng;
+	uint8_t height;
+} position_info;
+
+position_info device;
 
 
 #endif /* GLOBALS_H_ */

@@ -552,10 +552,19 @@
     <Compile Include="src\ASF\common2\components\display\ssd1306\ssd1306.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\config\globals.h">
+    <Compile Include="src\globals.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\menus.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\menu_list.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\views.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\views.h">
       <SubType>compile</SubType>
     </Compile>
     <None Include="src\ASF\sam0\drivers\tc\tc.h">
@@ -568,9 +577,6 @@
       <SubType>compile</SubType>
     </None>
     <Compile Include="src\ASF\sam0\drivers\tc\tc_sam_d_r\tc.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\config\menus.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\menus.h">
