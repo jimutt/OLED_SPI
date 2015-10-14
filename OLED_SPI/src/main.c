@@ -5,21 +5,40 @@
 #include "menus.h"
 #include "views.h"
 
-#define MAX_RX_BUFFER_LENGTH   5
-volatile uint8_t rx_buffer[MAX_RX_BUFFER_LENGTH];
+#define MAX_RX_BUFFER_LENGTH	1
+#define COMMAND_BUFFER_SIZE		64
+volatile uint8_t incoming_byte[MAX_RX_BUFFER_LENGTH];
 
 struct usart_module SIM808_usart;
 
+typedef struct {
+	unsigned char command[COMMAND_BUFFER_SIZE];
+	uint8_t position;
+	uint8_t available;
+} command_buffer;
+
+command_buffer SIM808_buf;
+
 void usart_read_callback(struct usart_module *const usart_module)
 {
-	usart_write_buffer_job(&SIM808_usart, (uint8_t *)rx_buffer, MAX_RX_BUFFER_LENGTH);
+	if(incoming_byte[0] == '\n') {
+		if(SIM808_buf.position > 1) {
+			SIM808_buf.command[SIM808_buf.position] = '\0';
+			SIM808_buf.position = 0;
+			SIM808_buf.available = 1;
+		}
+	}
+	else if(incoming_byte[0] != '\r'){
+		SIM808_buf.command[SIM808_buf.position] = incoming_byte[0];
+		SIM808_buf.position++;
+	}
+	
 }
 
 void usart_write_callback(struct usart_module *const usart_module)
 {
 	//Write callback
 }
-
 
 static void init_SIM808_uart(void) {
 	struct usart_config uart_settings;
@@ -59,6 +78,10 @@ int main (void)
 	
 	system_interrupt_enable_global();
 	
+	SIM808_buf.position = 0;
+	SIM808_buf.available = 0;
+	memset(SIM808_buf.command, 0, sizeof(unsigned char)*COMMAND_BUFFER_SIZE);
+	
 	gfx_mono_init();
 	
 	menu_buttons_init();
@@ -84,7 +107,12 @@ int main (void)
 	ssd1306_write_display();
 	
 	while (true) {
-		usart_read_buffer_job(&SIM808_usart, (uint8_t *)rx_buffer, MAX_RX_BUFFER_LENGTH);
+		usart_read_buffer_job(&SIM808_usart, (uint8_t *)incoming_byte, MAX_RX_BUFFER_LENGTH);
+		
+		if(SIM808_buf.available == 1) {
+			printf("New Command: %s\r\n", SIM808_buf.command);
+			SIM808_buf.available = 0;
+		}
 			
 			
 		if(btn_nav_down.active) {
