@@ -91,6 +91,10 @@
 #include <spi.h>
 #include <spi_interrupt.h>
 
+// From module: SERCOM USART - Serial Communications (Callback APIs)
+#include <usart.h>
+#include <usart_interrupt.h>
+
 // From module: SSD1306 OLED controller
 #include <ssd1306.h>
 
@@ -113,8 +117,14 @@
 // From module: SYSTEM - Reset Management for SAM D20/D21/R21/D10/D11
 #include <reset.h>
 
+// From module: Standard serial I/O (stdio)
+#include <stdio_serial.h>
+
 // From module: TC - Timer Counter (Callback APIs)
 #include <tc.h>
 #include <tc_interrupt.h>
+
+// From module: USART - Serial interface- SAM implementation for devices with only USART
+#include <serial.h>
 
 #endif // ASF_H

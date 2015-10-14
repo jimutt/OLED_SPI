@@ -4,6 +4,14 @@
 
 src\ASF\common2\components\display\ssd1306\ssd1306.c
 
+src\ASF\sam0\drivers\sercom\usart\usart.c
+
+src\ASF\sam0\drivers\sercom\usart\usart_interrupt.c
+
+src\ASF\sam0\utils\stdio\read.c
+
+src\ASF\sam0\utils\stdio\write.c
+
 src\menus.c
 
 src\views.c

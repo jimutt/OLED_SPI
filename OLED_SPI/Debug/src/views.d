@@ -127,9 +127,16 @@ src/views.d src/views.o: ../src/views.c ../src/menus.h ../src/asf.h \
  ../src/config/conf_spi.h \
  ../src/ASF/sam0/drivers/sercom/spi/spi_interrupt.h \
  ../src/ASF/sam0/drivers/sercom/spi/spi.h \
+ ../src/ASF/sam0/drivers/sercom/usart/usart.h \
+ ../src/ASF/sam0/drivers/sercom/usart/usart_interrupt.h \
+ ../src/ASF/sam0/drivers/sercom/usart/usart.h \
  ../src/ASF/common2/components/display/ssd1306/ssd1306.h \
  ../src/ASF/common2/services/gfx_mono/gfx_mono_null.h \
- ../src/config/conf_ssd1306.h ../src/ASF/sam0/drivers/tc/tc.h \
+ ../src/config/conf_ssd1306.h \
+ ../src/ASF/sam0/utils/stdio/stdio_serial/stdio_serial.h \
+ ../src/ASF/common/services/serial/serial.h \
+ ../src/ASF/common/services/serial/sam0_usart/usart_serial.h \
+ ../src/ASF/sam0/drivers/tc/tc.h \
  ../src/ASF/sam0/drivers/tc/tc_interrupt.h \
  ../src/ASF/sam0/drivers/tc/tc.h ../src/menu_link.h ../src/views.h \
  ../src/globals.h
@@ -402,11 +409,23 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\arm\ gcc\native\4.8.1443\arm-gnu
 
 ../src/ASF/sam0/drivers/sercom/spi/spi.h:
 
+../src/ASF/sam0/drivers/sercom/usart/usart.h:
+
+../src/ASF/sam0/drivers/sercom/usart/usart_interrupt.h:
+
+../src/ASF/sam0/drivers/sercom/usart/usart.h:
+
 ../src/ASF/common2/components/display/ssd1306/ssd1306.h:
 
 ../src/ASF/common2/services/gfx_mono/gfx_mono_null.h:
 
 ../src/config/conf_ssd1306.h:
+
+../src/ASF/sam0/utils/stdio/stdio_serial/stdio_serial.h:
+
+../src/ASF/common/services/serial/serial.h:
+
+../src/ASF/common/services/serial/sam0_usart/usart_serial.h:
 
 ../src/ASF/sam0/drivers/tc/tc.h:
 
