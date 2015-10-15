@@ -27,7 +27,24 @@ typedef struct {
 	uint8_t height;
 } position_info;
 
+typedef struct {
+	char header[5];
+	char utc_time[10];
+	char status;
+	float lat;
+	float lng;
+	char ns_indicator;
+	char ew_indicator;
+	float ground_speed;
+	float ground_course;
+	int date;
+	char mode;
+	char cheksum[3];
+} GPS_GPRMC;
+
 position_info device;
+
+GPS_GPRMC gps_data;
 
 
 #endif /* GLOBALS_H_ */

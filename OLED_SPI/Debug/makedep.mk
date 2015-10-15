@@ -12,7 +12,11 @@ src\ASF\sam0\utils\stdio\read.c
 
 src\ASF\sam0\utils\stdio\write.c
 
+src\gps_utils.c
+
 src\menus.c
+
+src\response_actions.c
 
 src\views.c
 

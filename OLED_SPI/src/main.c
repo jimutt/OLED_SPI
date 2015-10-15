@@ -1,12 +1,14 @@
 #include <asf.h>
+#include <string.h>
 #include "menu_list.h"
 #include "globals.h"
 #include "menu_buttons.h"
 #include "menus.h"
 #include "views.h"
+#include "response_actions.h"
 
 #define MAX_RX_BUFFER_LENGTH	1
-#define COMMAND_BUFFER_SIZE		64
+#define COMMAND_BUFFER_SIZE		128
 volatile uint8_t incoming_byte[MAX_RX_BUFFER_LENGTH];
 
 struct usart_module SIM808_usart;
@@ -19,20 +21,64 @@ typedef struct {
 
 command_buffer SIM808_buf;
 
+typedef struct {
+	char *cmd;
+	char *expected_response;
+	void (*response_cb)(uint8_t, char*);
+} command;
+
+
+command last_command;
+
+command CMD_NO_ECHO;
+command CMD_GET_GPS_DATA;
+
+void sim808_send_command(command cmd) {
+	uint8_t send_string_len = strlen(cmd.cmd)+2;
+	char send_string[50];
+	last_command = cmd;
+	printf("%s\r\n", cmd.cmd);	
+}
+
+void sim808_parse_response() {
+	volatile uint8_t result = 0;
+	volatile uint8_t cmp_cmd_len = SIM808_buf.position;
+	volatile uint8_t resp_len = strlen(last_command.expected_response);
+	
+	volatile char originalChar = SIM808_buf.command[resp_len];
+	if(cmp_cmd_len > resp_len) {
+		SIM808_buf.command[resp_len] = '\0';
+	}
+	
+	//TOODO: add function pointer to call if correct result
+	if(strcmp(SIM808_buf.command, last_command.expected_response) == 0) {
+		result = 1;
+	}
+	
+	SIM808_buf.command[resp_len] = originalChar;	//Reset to original state after comparison
+	
+	(*last_command.response_cb)(result, SIM808_buf.command);
+	
+	SIM808_buf.available = 0;
+	volatile testVar = SIM808_buf.position;
+	SIM808_buf.position = 0;
+	memset(SIM808_buf.command, 0, sizeof(unsigned char)*COMMAND_BUFFER_SIZE);
+}
+
 void usart_read_callback(struct usart_module *const usart_module)
 {
 	if(incoming_byte[0] == '\n') {
 		if(SIM808_buf.position > 1) {
 			SIM808_buf.command[SIM808_buf.position] = '\0';
-			SIM808_buf.position = 0;
 			SIM808_buf.available = 1;
 		}
 	}
 	else if(incoming_byte[0] != '\r'){
 		SIM808_buf.command[SIM808_buf.position] = incoming_byte[0];
 		SIM808_buf.position++;
-	}
+	}	
 	
+	usart_read_buffer_job(&SIM808_usart, (uint8_t *)incoming_byte, MAX_RX_BUFFER_LENGTH);
 }
 
 void usart_write_callback(struct usart_module *const usart_module)
@@ -62,7 +108,7 @@ static void init_SIM808_uart(void) {
 void init_sim808_usart_callbacks(void)
 {
 	usart_register_callback(&SIM808_usart, usart_write_callback, USART_CALLBACK_BUFFER_TRANSMITTED);
-	usart_register_callback(&SIM808_usart, usart_read_callback, USART_CALLBACK_BUFFER_RECEIVED);
+	//usart_register_callback(&SIM808_usart, usart_read_callback, USART_CALLBACK_BUFFER_RECEIVED);
 	usart_enable_callback(&SIM808_usart, USART_CALLBACK_BUFFER_TRANSMITTED);
 	usart_enable_callback(&SIM808_usart, USART_CALLBACK_BUFFER_RECEIVED);
 }
@@ -81,6 +127,15 @@ int main (void)
 	SIM808_buf.position = 0;
 	SIM808_buf.available = 0;
 	memset(SIM808_buf.command, 0, sizeof(unsigned char)*COMMAND_BUFFER_SIZE);
+	
+	CMD_NO_ECHO.cmd = "ATE0";
+	CMD_NO_ECHO.expected_response = "OK";
+	
+	CMD_GET_GPS_DATA.cmd = "AT+CGPSINF=32";
+	CMD_GET_GPS_DATA.expected_response = "+CGPSINF";
+	CMD_GET_GPS_DATA.response_cb = &SIM808_response_gps_data;
+	
+
 	
 	gfx_mono_init();
 	
@@ -106,12 +161,23 @@ int main (void)
 	display_menu(MAIN_MENU);
 	ssd1306_write_display();
 	
+	
+	
+	//Disable echo
+	sim808_send_command(CMD_NO_ECHO);
+	delay_ms(500);
+	usart_register_callback(&SIM808_usart, usart_read_callback, USART_CALLBACK_BUFFER_RECEIVED);
+	usart_read_buffer_job(&SIM808_usart, (uint8_t *)incoming_byte, MAX_RX_BUFFER_LENGTH);
+	delay_ms(500);
+	
+	sim808_send_command(CMD_GET_GPS_DATA);
+	
+	
 	while (true) {
-		usart_read_buffer_job(&SIM808_usart, (uint8_t *)incoming_byte, MAX_RX_BUFFER_LENGTH);
+		
 		
 		if(SIM808_buf.available == 1) {
-			printf("New Command: %s\r\n", SIM808_buf.command);
-			SIM808_buf.available = 0;
+			sim808_parse_response();
 		}
 			
 			
@@ -120,7 +186,7 @@ int main (void)
 			gfx_mono_menu_process_key(&menu_list[gfx_mono_active_menu-(VIEW_MAX_INDEX+1)], GFX_MONO_MENU_KEYCODE_DOWN);
 			ssd1306_write_display();
 		}
-			
+		/*	
 		if(btn_nav_select.active) {
 			btn_nav_select.active = 0;
 				
@@ -152,7 +218,7 @@ int main (void)
 				}
 			}
 				
-		}
+		}*/
 			
 	}
 }
