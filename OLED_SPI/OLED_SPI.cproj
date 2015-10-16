@@ -653,6 +653,12 @@
     <Compile Include="src\response_actions.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\sim808_uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\sim808_uart.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\views.c">
       <SubType>compile</SubType>
     </Compile>

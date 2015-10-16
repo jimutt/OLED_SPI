@@ -18,6 +18,8 @@ src\menus.c
 
 src\response_actions.c
 
+src\sim808_uart.c
+
 src\views.c
 
 src\ASF\sam0\drivers\tc\tc_interrupt.c

@@ -1,5 +1,5 @@
-src/main.d src/main.o: ../src/main.c ../src/asf.h \
- ../src/ASF/sam0/utils/compiler.h \
+src/sim808_uart.d src/sim808_uart.o: ../src/sim808_uart.c \
+ ../src/sim808_uart.h ../src/asf.h ../src/ASF/sam0/utils/compiler.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\arm\ gcc\native\4.8.1443\arm-gnu-toolchain\lib\gcc\arm-none-eabi\4.8.4\include\stddef.h \
  ../src/ASF/common/utils/parts.h ../src/ASF/sam0/utils/status_codes.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\arm\ gcc\native\4.8.1443\arm-gnu-toolchain\lib\gcc\arm-none-eabi\4.8.4\include\stdint.h \
@@ -138,9 +138,9 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/common/services/serial/sam0_usart/usart_serial.h \
  ../src/ASF/sam0/drivers/tc/tc.h \
  ../src/ASF/sam0/drivers/tc/tc_interrupt.h \
- ../src/ASF/sam0/drivers/tc/tc.h ../src/menu_list.h ../src/globals.h \
- ../src/menu_buttons.h ../src/menus.h ../src/menu_link.h ../src/views.h \
- ../src/response_actions.h ../src/gps_utils.h ../src/sim808_uart.h
+ ../src/ASF/sam0/drivers/tc/tc.h
+
+../src/sim808_uart.h:
 
 ../src/asf.h:
 
@@ -431,21 +431,3 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\arm\ gcc\native\4.8.1443\arm-gnu
 ../src/ASF/sam0/drivers/tc/tc_interrupt.h:
 
 ../src/ASF/sam0/drivers/tc/tc.h:
-
-../src/menu_list.h:
-
-../src/globals.h:
-
-../src/menu_buttons.h:
-
-../src/menus.h:
-
-../src/menu_link.h:
-
-../src/views.h:
-
-../src/response_actions.h:
-
-../src/gps_utils.h:
-
-../src/sim808_uart.h:

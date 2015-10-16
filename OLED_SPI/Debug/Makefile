@@ -119,6 +119,7 @@ C_SRCS +=  \
 ../src/gps_utils.c \
 ../src/menus.c \
 ../src/response_actions.c \
+../src/sim808_uart.c \
 ../src/views.c \
 ../src/ASF/sam0/drivers/tc/tc_interrupt.c \
 ../src/ASF/sam0/drivers/tc/tc_sam_d_r/tc.c \
@@ -163,6 +164,7 @@ src/ASF/sam0/utils/stdio/write.o \
 src/gps_utils.o \
 src/menus.o \
 src/response_actions.o \
+src/sim808_uart.o \
 src/views.o \
 src/ASF/sam0/drivers/tc/tc_interrupt.o \
 src/ASF/sam0/drivers/tc/tc_sam_d_r/tc.o \
@@ -200,6 +202,7 @@ src/ASF/sam0/utils/stdio/write.o \
 src/gps_utils.o \
 src/menus.o \
 src/response_actions.o \
+src/sim808_uart.o \
 src/views.o \
 src/ASF/sam0/drivers/tc/tc_interrupt.o \
 src/ASF/sam0/drivers/tc/tc_sam_d_r/tc.o \
@@ -237,6 +240,7 @@ src/ASF/sam0/utils/stdio/write.d \
 src/gps_utils.d \
 src/menus.d \
 src/response_actions.d \
+src/sim808_uart.d \
 src/views.d \
 src/ASF/sam0/drivers/tc/tc_interrupt.d \
 src/ASF/sam0/drivers/tc/tc_sam_d_r/tc.d \
@@ -274,6 +278,7 @@ src/ASF/sam0/utils/stdio/write.d \
 src/gps_utils.d \
 src/menus.d \
 src/response_actions.d \
+src/sim808_uart.d \
 src/views.d \
 src/ASF/sam0/drivers/tc/tc_interrupt.d \
 src/ASF/sam0/drivers/tc/tc_sam_d_r/tc.d \
@@ -317,6 +322,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
