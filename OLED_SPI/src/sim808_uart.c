@@ -7,11 +7,28 @@
 
 #include "sim808_uart.h"
 
+typedef struct {
+	char date_time[12];
+	uint32_t device;
+	log_entry entries[255];
+} data_log;
+
+typedef struct {
+	char time[6];
+	float lat;
+	float lng;
+	float speed;
+	uint8_t incliniation;
+	float g_force;
+} log_entry;
+
+
 void sim808_init() {
 	uint8_t success;
 	
 	do {
 		success = 1;
+		sim808_reset();
 		sim808_send_command(CMD_RESET);
 		sim808_send_command(CMD_NO_ECHO);	//Disable echo
 		usart_register_callback(&SIM808_usart, usart_read_callback, USART_CALLBACK_BUFFER_RECEIVED);

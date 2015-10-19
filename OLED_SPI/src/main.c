@@ -79,8 +79,6 @@ int main (void)
 	gfx_mono_draw_string("Enabling",23, 18, &sysfont);
 	gfx_mono_draw_string("GPRS",44, 32, &sysfont);
 	ssd1306_write_display();
-	sim808_reset();
-	//TODO: Visa initieringsskärm
 	sim808_init();
 	
 	gfx_mono_draw_filled_rect(0, 0,

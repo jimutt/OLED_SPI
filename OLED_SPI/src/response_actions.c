@@ -9,6 +9,7 @@
 //Update GPS data
 // TODO: Only update if success = 1
 void SIM808_response_gps_data(uint8_t success, volatile char *cmd) {
+	
 	volatile uint8_t testVar = success;
 	testVar = success;
 	
