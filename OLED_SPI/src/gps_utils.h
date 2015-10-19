@@ -11,6 +11,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include "globals.h"
 
 float gps_utils_coord_to_dec(char*);
 

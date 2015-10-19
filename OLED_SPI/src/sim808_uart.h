@@ -48,17 +48,23 @@ command CMD_GPS_PWR_ON;
 command CMD_GPS_PWR_OFF;
 
 command CMD_GET_GPS_DATA;
+command CMD_GET_GPS_FIX;
+
+command CMD_GPRS_GET_REQ;
 
 void sim808_init(void);
+uint8_t sim808_init_http();
+uint8_t sim808_connect();
 void sim808_reset();
-uint8_t	sim808_init_gprs();
+
+
+void sim808_init_gprs();
 void init_SIM808_uart(void);
 void sim808_send_command(command);
 uint8_t sim808_parse_response_wait(void);
 uint8_t sim808_parse_response(void);
 void usart_read_callback(struct usart_module *const);
 void usart_write_callback(struct usart_module *const);
-
 
 
 void init_sim808_usart_callbacks(void);

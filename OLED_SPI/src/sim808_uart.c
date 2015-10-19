@@ -7,38 +7,29 @@
 
 #include "sim808_uart.h"
 
-typedef struct {
-	char date_time[12];
-	uint32_t device;
-	log_entry entries[255];
-} data_log;
-
-typedef struct {
-	char time[6];
-	float lat;
-	float lng;
-	float speed;
-	uint8_t incliniation;
-	float g_force;
-} log_entry;
-
-
 void sim808_init() {
 	uint8_t success;
 	
 	do {
 		success = 1;
-		sim808_reset();
 		sim808_send_command(CMD_RESET);
+		delay_ms(200);
 		sim808_send_command(CMD_NO_ECHO);	//Disable echo
 		usart_register_callback(&SIM808_usart, usart_read_callback, USART_CALLBACK_BUFFER_RECEIVED);
 		usart_read_buffer_job(&SIM808_usart, (uint8_t *)incoming_byte, MAX_RX_BUFFER_LENGTH);
 		sim808_parse_response_wait();
+		delay_ms(200);
 		sim808_send_command(CMD_GPS_PWR_ON);	//Enable GPS
 		sim808_parse_response_wait();
-		delay_ms(200);
-		success = sim808_init_gprs();					//Initiate GPRS
 	} while(success == 0);
+	
+	uint8_t connection = 1;
+	do {
+		sim808_init_gprs();
+		sim808_init_http();
+		connection = sim808_connect();	
+	} while(connection == 0);
+
 
 }
 
@@ -47,48 +38,81 @@ void sim808_reset() {
 	delay_ms(500);
 	port_pin_set_output_level(SIM808_RESET_PIN, false);
 	delay_ms(6000);
+	
+	sim808_send_command(CMD_GPS_PWR_ON);	//Enable GPS
+	sim808_parse_response_wait();
+	delay_ms(200);
 }
 
-uint8_t sim808_init_gprs() {
-	volatile uint8_t res;
+uint8_t sim808_init_http() {
+	volatile uint8_t result = 0;
+	result = 1;
+	command cmd;
+	cmd.expected_response = "OK";
+	cmd.callback_enabled = 0;
+	
+	do {
+			
+		cmd.cmd = "AT+HTTPINIT";
+		sim808_send_command(cmd);
+		sim808_parse_response_wait();
+
+		cmd.cmd = "AT+HTTPPARA=\"CID\",1"; 							//Bearer profile identifier
+		sim808_send_command(cmd);
+		if(!sim808_parse_response_wait()) result = 0;
+	
+		cmd.cmd = "AT+HTTPPARA=\"UA\",\"FONA\"";					//User agent
+		sim808_send_command(cmd);
+		if(!sim808_parse_response_wait()) result = 0;
+	
+		cmd.cmd = "AT+HTTPPARA=\"URL\",\"http://tripcomputer.azurewebsites.net/api/test/1\"";
+		sim808_send_command(cmd);
+		if(!sim808_parse_response_wait()) result = 0;
+	
+		cmd.cmd = "AT+HTTPPARA=\"TIMEOUT\",30";
+		sim808_send_command(cmd);
+		if(!sim808_parse_response_wait()) result = 0;
+		
+		if(result == 0) {
+			result = 1;
+			sim808_reset();			
+		}
+	} while(result == 0);
+}
+
+void sim808_init_gprs() {
 	command cmd;
 	cmd.expected_response = "OK";
 	cmd.callback_enabled = 0;
 
 	cmd.cmd = "AT+SAPBR=3,1,\"CONTYPE\",\"GPRS\"";
 	sim808_send_command(cmd);
-	if(!sim808_parse_response_wait()) res = 0;
+	sim808_parse_response_wait();
+	delay_ms(400);
 				
 	cmd.cmd = "AT+SAPBR=3,1,\"APN\",\"online.telia.se\"";
 	sim808_send_command(cmd);
-	if(!sim808_parse_response_wait()) res = 0;
-				
-	cmd.cmd = "AT+SAPBR=1,1";
+	sim808_parse_response_wait();
+	delay_ms(400);			
+}
+
+uint8_t sim808_connect() {
+	volatile uint8_t res = 1;
+	command cmd;
+	cmd.expected_response = "OK";
+	cmd.callback_enabled = 0;
+		
+	cmd.cmd = "AT+SAPBR=0,1";									//Disconnect if connected
+	sim808_send_command(cmd);
+	sim808_parse_response_wait();
+	delay_ms(2000);
+	
+	cmd.cmd = "AT+SAPBR=1,1";									//Connect to network
 	sim808_send_command(cmd);
 	if(!sim808_parse_response_wait()) res = 0;
-				
-	cmd.cmd = "AT+HTTPINIT";
-	sim808_send_command(cmd);
-	if(!sim808_parse_response_wait()) res = 0;
-				
-	cmd.cmd = "AT+HTTPPARA=\"CID\",1"; 		 //Bearer profile identifier
-	sim808_send_command(cmd);
-	if(!sim808_parse_response_wait()) res = 0;
-				
-	cmd.cmd = "AT+HTTPPARA=\"UA\",\"FONA\""; //User agent
-	sim808_send_command(cmd);
-	if(!sim808_parse_response_wait()) res = 0;
-				
-	cmd.cmd = "AT+HTTPPARA=\"URL\",\"http://tripcomputer.azurewebsites.net/api/test/1\"";
-	sim808_send_command(cmd);
-	if(!sim808_parse_response_wait()) res = 0;
-				
-	cmd.cmd = "AT+HTTPPARA=\"TIMEOUT\",30";
-	sim808_send_command(cmd);
-	if(!sim808_parse_response_wait()) res = 0;
+	delay_ms(500);		
 
 	return res;
-	
 }
 
 void sim808_send_command(command cmd) {

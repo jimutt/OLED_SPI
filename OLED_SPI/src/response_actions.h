@@ -12,8 +12,10 @@
 #include <asf.h>
 #include "globals.h"
 #include "gps_utils.h"
+#include "sim808_uart.h"
 
-void SIM808_response_gps_data(uint8_t, volatile char*);
+void SIM808_response_gprs_get(volatile uint8_t, volatile char*);
+void SIM808_response_gps_data(volatile uint8_t, volatile char*);
 
 
 #endif /* RESPONSE_ACTIONS_H_ */

@@ -5,6 +5,11 @@
  *  Author: jiut0001
  */ 
 #include "gps_utils.h"
+#include "gprs_transfer_packages.h"
+
+void gps_utils_entry_to_send_buffer(log_entry *entry, data_log *send_buf) {
+	
+}
 
 //Convert from ddmm.mmmm to decimal coordinates
 float gps_utils_coord_to_dec(char* val) {

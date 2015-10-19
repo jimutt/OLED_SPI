@@ -6,9 +6,13 @@
  */ 
 #include "response_actions.h"
 
+void SIM808_response_gprs_get(volatile uint8_t success, volatile char *cmd) {
+	last_command.expected_response = "+HTTPACTION";
+}
+
 //Update GPS data
 // TODO: Only update if success = 1
-void SIM808_response_gps_data(uint8_t success, volatile char *cmd) {
+void SIM808_response_gps_data(volatile uint8_t success, volatile char *cmd) {
 	
 	volatile uint8_t testVar = success;
 	testVar = success;

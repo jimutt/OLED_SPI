@@ -138,7 +138,8 @@ src/response_actions.d src/response_actions.o: ../src/response_actions.c \
  ../src/ASF/common/services/serial/sam0_usart/usart_serial.h \
  ../src/ASF/sam0/drivers/tc/tc.h \
  ../src/ASF/sam0/drivers/tc/tc_interrupt.h \
- ../src/ASF/sam0/drivers/tc/tc.h ../src/globals.h ../src/gps_utils.h
+ ../src/ASF/sam0/drivers/tc/tc.h ../src/globals.h ../src/gps_utils.h \
+ ../src/sim808_uart.h
 
 ../src/response_actions.h:
 
@@ -435,3 +436,5 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\arm\ gcc\native\4.8.1443\arm-gnu
 ../src/globals.h:
 
 ../src/gps_utils.h:
+
+../src/sim808_uart.h:

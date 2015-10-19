@@ -7,6 +7,7 @@
 #include "views.h"
 #include "response_actions.h"
 #include "sim808_uart.h"
+#include "gprs_transfer_packages.h"
 
 
 int main (void)
@@ -45,8 +46,14 @@ int main (void)
 	CMD_GET_GPS_DATA.expected_response = "+CGPSINF";
 	CMD_GET_GPS_DATA.response_cb = &SIM808_response_gps_data;
 	
+	CMD_GET_GPS_FIX.cmd = "AT+CGPSSTATUS?";
+	CMD_GET_GPS_FIX.callback_enabled = 0;
+	CMD_GET_GPS_FIX.expected_response = "Location 3D";
 	
-
+	CMD_GPRS_GET_REQ.cmd = "AT+HTTPACTION=0";
+	CMD_GPRS_GET_REQ.callback_enabled = 1;
+	CMD_GPRS_GET_REQ.expected_response = "OK";
+	CMD_GPRS_GET_REQ.response_cb = &SIM808_response_gprs_get;
 	
 	gfx_mono_init();
 	
@@ -56,9 +63,9 @@ int main (void)
 	
 	device.speed = 22; //Only for debug
 
-	// the page address to write to
+	// The page address to write to
 	uint8_t page_address = 0;
-	// the column address, or the X pixel.
+	// The column address, or the X pixel.
 	uint8_t column_address = 0;
 
 	// Initialize SPI and SSD1306 controller
@@ -86,10 +93,24 @@ int main (void)
 	gfx_mono_draw_string("Waiting for",10, 18, &sysfont);
 	gfx_mono_draw_string("GPS fix",30, 32, &sysfont);
 	ssd1306_write_display();
-	//TODO: Vänta på GPS location fix:
-
 	
+	//TODO: Vänta på GPS location fix
+	while (1) {
+		sim808_send_command(CMD_GET_GPS_DATA);
+		sim808_parse_response_wait();
+		delay_ms(1000);
+	}
 	
+	gfx_mono_draw_filled_rect(0, 0,
+	GFX_MONO_LCD_WIDTH, GFX_MONO_LCD_HEIGHT, GFX_PIXEL_CLR);
+	gfx_mono_draw_string("Yeah!",50, 18, &sysfont);
+	ssd1306_write_display();
+	
+	//GPRS GET TEST
+	sim808_send_command(CMD_GPRS_GET_REQ);
+	sim808_parse_response_wait();
+	sim808_parse_response_wait();
+	delay_ms(200000);
 	
 	
 	

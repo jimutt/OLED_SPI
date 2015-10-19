@@ -12,6 +12,8 @@ src\ASF\sam0\utils\stdio\read.c
 
 src\ASF\sam0\utils\stdio\write.c
 
+src\gprs_transfer_packages.c
+
 src\gps_utils.c
 
 src\menus.c

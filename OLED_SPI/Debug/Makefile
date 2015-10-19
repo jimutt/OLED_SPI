@@ -116,6 +116,7 @@ C_SRCS +=  \
 ../src/ASF/sam0/drivers/sercom/usart/usart_interrupt.c \
 ../src/ASF/sam0/utils/stdio/read.c \
 ../src/ASF/sam0/utils/stdio/write.c \
+../src/gprs_transfer_packages.c \
 ../src/gps_utils.c \
 ../src/menus.c \
 ../src/response_actions.c \
@@ -161,6 +162,7 @@ src/ASF/sam0/drivers/sercom/usart/usart.o \
 src/ASF/sam0/drivers/sercom/usart/usart_interrupt.o \
 src/ASF/sam0/utils/stdio/read.o \
 src/ASF/sam0/utils/stdio/write.o \
+src/gprs_transfer_packages.o \
 src/gps_utils.o \
 src/menus.o \
 src/response_actions.o \
@@ -199,6 +201,7 @@ src/ASF/sam0/drivers/sercom/usart/usart.o \
 src/ASF/sam0/drivers/sercom/usart/usart_interrupt.o \
 src/ASF/sam0/utils/stdio/read.o \
 src/ASF/sam0/utils/stdio/write.o \
+src/gprs_transfer_packages.o \
 src/gps_utils.o \
 src/menus.o \
 src/response_actions.o \
@@ -237,6 +240,7 @@ src/ASF/sam0/drivers/sercom/usart/usart.d \
 src/ASF/sam0/drivers/sercom/usart/usart_interrupt.d \
 src/ASF/sam0/utils/stdio/read.d \
 src/ASF/sam0/utils/stdio/write.d \
+src/gprs_transfer_packages.d \
 src/gps_utils.d \
 src/menus.d \
 src/response_actions.d \
@@ -275,6 +279,7 @@ src/ASF/sam0/drivers/sercom/usart/usart.d \
 src/ASF/sam0/drivers/sercom/usart/usart_interrupt.d \
 src/ASF/sam0/utils/stdio/read.d \
 src/ASF/sam0/utils/stdio/write.d \
+src/gprs_transfer_packages.d \
 src/gps_utils.d \
 src/menus.d \
 src/response_actions.d \
@@ -322,6 +327,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
