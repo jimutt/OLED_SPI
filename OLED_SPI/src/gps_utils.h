@@ -11,9 +11,11 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include "gprs_transfer_packages.h"
 #include "globals.h"
 
 float gps_utils_coord_to_dec(char*);
+void gps_utils_raw_data_to_send_buffer(data_log*);
 
 
 

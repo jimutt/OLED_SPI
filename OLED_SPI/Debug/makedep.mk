@@ -16,6 +16,8 @@ src\gprs_transfer_packages.c
 
 src\gps_utils.c
 
+src\json_converter.c
+
 src\menus.c
 
 src\response_actions.c

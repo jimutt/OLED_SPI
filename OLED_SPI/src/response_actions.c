@@ -6,6 +6,10 @@
  */ 
 #include "response_actions.h"
 
+void SIM808_response_gprs_set_post_data(volatile uint8_t success, volatile char *cmd) {
+	last_command.expected_response = "OK";
+}
+
 void SIM808_response_gprs_get(volatile uint8_t success, volatile char *cmd) {
 	last_command.expected_response = "+HTTPACTION";
 }
@@ -42,7 +46,7 @@ void SIM808_response_gps_data(volatile uint8_t success, volatile char *cmd) {
 		//Bind the separated field to the gps_data struct object:
 		switch(j) {
 			case 1:
-			strcpy(gps_data.utc_time, field);
+			gps_data.utc_time = atoi(field);
 			break;
 			case 2:
 			gps_data.status = field[0];
@@ -92,5 +96,9 @@ void SIM808_response_gps_data(volatile uint8_t success, volatile char *cmd) {
 		position++;
 		j++;
 		comma = strchr (position, ',');
+	}
+	
+	if(gps_data.status == 'A') {
+		gps_utils_raw_data_to_send_buffer(&gprs_log_buf);
 	}
 }

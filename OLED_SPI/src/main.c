@@ -70,9 +70,6 @@ int main (void)
 
 	// Initialize SPI and SSD1306 controller
 	ssd1306_init();
-	
-	uint8_t num = GFX_MONO_MENU_KEYCODE_DOWN;
-	uint8_t y = 0;
 
 	ssd1306_clear_display();
 	display_menu(MAIN_MENU);
@@ -98,7 +95,13 @@ int main (void)
 	while (1) {
 		sim808_send_command(CMD_GET_GPS_DATA);
 		sim808_parse_response_wait();
-		delay_ms(1000);
+		delay_ms(1100);
+		sim808_send_command(CMD_GET_GPS_DATA);
+		sim808_parse_response_wait();
+		
+		gprs_send_data_log();
+		
+		delay_ms(999000);
 	}
 	
 	gfx_mono_draw_filled_rect(0, 0,

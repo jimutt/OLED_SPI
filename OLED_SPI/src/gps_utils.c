@@ -5,10 +5,17 @@
  *  Author: jiut0001
  */ 
 #include "gps_utils.h"
-#include "gprs_transfer_packages.h"
 
-void gps_utils_entry_to_send_buffer(log_entry *entry, data_log *send_buf) {
+void gps_utils_raw_data_to_send_buffer(data_log *send_buf) {
+	log_entry entry;
+	entry.time = gps_data.utc_time;
+	entry.lat = gps_data.lat;
+	entry.lng = gps_data.lng;
+	entry.speed = gps_data.ground_speed;
+	entry.inclination = 14;
+	entry.g_force = 2.21;
 	
+	gprs_buf_push(entry, &gprs_log_buf);
 }
 
 //Convert from ddmm.mmmm to decimal coordinates

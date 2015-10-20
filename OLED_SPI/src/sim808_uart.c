@@ -44,7 +44,7 @@ void sim808_reset() {
 	delay_ms(200);
 }
 
-uint8_t sim808_init_http() {
+void sim808_init_http() {
 	volatile uint8_t result = 0;
 	result = 1;
 	command cmd;

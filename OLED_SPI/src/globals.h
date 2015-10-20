@@ -14,6 +14,26 @@
 struct port_config pin_cfg;
 struct tc_module btn_timer;
 
+/*----------------------
+Ska egentligen ligga i gprs_transfer_packages.h
+*/
+typedef struct {
+	uint32_t time;
+	float lat;
+	float lng;
+	float speed;
+	uint8_t inclination;
+	float g_force;
+} log_entry;
+
+typedef struct {
+	char date_time[12];		//Används ej
+	uint32_t device;
+	log_entry entries[255];
+} data_log;
+
+/*----------------------*/
+
 typedef struct {
 	uint8_t active;
 	uint8_t pin;
@@ -29,7 +49,7 @@ typedef struct {
 
 typedef struct {
 	char header[5];
-	char utc_time[10];
+	uint32_t utc_time;
 	char status;
 	float lat;
 	float lng;

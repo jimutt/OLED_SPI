@@ -20,7 +20,7 @@ typedef struct {
 void display_view(menu_link);
 
 //Redraws current view and updates data
-void refresh_view();
+void refresh_view(void);
 
 void draw_speed_view(void);
 

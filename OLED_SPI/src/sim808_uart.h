@@ -34,8 +34,8 @@ typedef struct {
 command_buffer SIM808_buf;
 
 typedef struct {
-	char *cmd;
-	char *expected_response;
+	const char *cmd;
+	const char *expected_response;
 	uint8_t callback_enabled;
 	void (*response_cb)(uint8_t, char*);
 } command;
@@ -53,12 +53,12 @@ command CMD_GET_GPS_FIX;
 command CMD_GPRS_GET_REQ;
 
 void sim808_init(void);
-uint8_t sim808_init_http();
-uint8_t sim808_connect();
-void sim808_reset();
+void sim808_init_http(void);
+uint8_t sim808_connect(void);
+void sim808_reset(void);
 
 
-void sim808_init_gprs();
+void sim808_init_gprs(void);
 void init_SIM808_uart(void);
 void sim808_send_command(command);
 uint8_t sim808_parse_response_wait(void);

@@ -647,6 +647,12 @@
     <Compile Include="src\gps_utils.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\json_converter.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\json_converter.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\menus.c">
       <SubType>compile</SubType>
     </Compile>
