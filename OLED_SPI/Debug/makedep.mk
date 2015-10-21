@@ -12,6 +12,8 @@ src\ASF\sam0\utils\stdio\read.c
 
 src\ASF\sam0\utils\stdio\write.c
 
+src\bike.c
+
 src\gprs_transfer_packages.c
 
 src\gps_utils.c
@@ -23,6 +25,8 @@ src\menus.c
 src\response_actions.c
 
 src\sim808_uart.c
+
+src\spi_display.c
 
 src\views.c
 

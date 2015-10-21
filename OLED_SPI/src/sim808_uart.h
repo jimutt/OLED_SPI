@@ -17,10 +17,17 @@
  */ 
 
 #include <asf.h>
+#include "response_actions.h"
 
 #define MAX_RX_BUFFER_LENGTH	1
 #define COMMAND_BUFFER_SIZE		128
 #define SIM808_RESET_PIN		PIN_PA06
+
+#define SIM808_RECEIVE_DELAY_NORMAL		500
+#define SIM808_RECEIVE_DELAY_LONG		2000
+#define SIM808_RECEIVE_DELAY_MEGALONG	10000
+#define SIM808_RECEIVE_DELAY_FOREVER	65535
+
 volatile uint8_t incoming_byte[MAX_RX_BUFFER_LENGTH];
 
 struct usart_module SIM808_usart;
@@ -42,6 +49,7 @@ typedef struct {
 
 command last_command;
 
+command CMD_AT;
 command CMD_RESET;
 command CMD_NO_ECHO;
 command CMD_GPS_PWR_ON;
@@ -54,6 +62,7 @@ command CMD_GPRS_GET_REQ;
 
 void sim808_init(void);
 void sim808_init_http(void);
+void sim808_init_commands(void);
 uint8_t sim808_connect(void);
 void sim808_reset(void);
 
@@ -61,7 +70,7 @@ void sim808_reset(void);
 void sim808_init_gprs(void);
 void init_SIM808_uart(void);
 void sim808_send_command(command);
-uint8_t sim808_parse_response_wait(void);
+uint8_t sim808_parse_response_wait(uint16_t);
 uint8_t sim808_parse_response(void);
 void usart_read_callback(struct usart_module *const);
 void usart_write_callback(struct usart_module *const);

@@ -632,6 +632,12 @@
     <Compile Include="src\ASF\sam0\utils\stdio\write.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\bike.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\bike.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\globals.h">
       <SubType>compile</SubType>
     </Compile>
@@ -669,6 +675,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\sim808_uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\spi_display.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\spi_display.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\views.c">

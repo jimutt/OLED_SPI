@@ -8,19 +8,34 @@
 #include "sim808_uart.h"
 
 void sim808_init() {
+	
 	uint8_t success;
 	
+	usart_register_callback(&SIM808_usart, usart_read_callback, USART_CALLBACK_BUFFER_RECEIVED);
+	usart_read_buffer_job(&SIM808_usart, (uint8_t *)incoming_byte, MAX_RX_BUFFER_LENGTH);
+	
+	//Check if turned off
+	sim808_send_command(CMD_AT);
+	if(sim808_parse_response_wait(SIM808_RECEIVE_DELAY_NORMAL) == 0) {
+		//Enable the module if turned off:
+		delay_ms(400);
+		port_pin_set_output_level(SIM808_RESET_PIN, false);
+		delay_ms(4000);
+		port_pin_set_output_level(SIM808_RESET_PIN, true);		
+	}
+
+	
 	do {
+		usart_disable_callback(&SIM808_usart, USART_CALLBACK_BUFFER_RECEIVED);
 		success = 1;
-		sim808_send_command(CMD_RESET);
-		delay_ms(200);
+		sim808_send_command(CMD_RESET);		
+		delay_ms(400);
 		sim808_send_command(CMD_NO_ECHO);	//Disable echo
-		usart_register_callback(&SIM808_usart, usart_read_callback, USART_CALLBACK_BUFFER_RECEIVED);
+		usart_enable_callback(&SIM808_usart, USART_CALLBACK_BUFFER_RECEIVED);
 		usart_read_buffer_job(&SIM808_usart, (uint8_t *)incoming_byte, MAX_RX_BUFFER_LENGTH);
-		sim808_parse_response_wait();
-		delay_ms(200);
+		sim808_parse_response_wait(SIM808_RECEIVE_DELAY_NORMAL);
 		sim808_send_command(CMD_GPS_PWR_ON);	//Enable GPS
-		sim808_parse_response_wait();
+		sim808_parse_response_wait(SIM808_RECEIVE_DELAY_NORMAL);
 	} while(success == 0);
 	
 	uint8_t connection = 1;
@@ -34,13 +49,16 @@ void sim808_init() {
 }
 
 void sim808_reset() {
-	port_pin_set_output_level(SIM808_RESET_PIN, true);
-	delay_ms(500);
 	port_pin_set_output_level(SIM808_RESET_PIN, false);
-	delay_ms(6000);
+	delay_ms(3000);
+	port_pin_set_output_level(SIM808_RESET_PIN, true);
+	delay_ms(100);
+	port_pin_set_output_level(SIM808_RESET_PIN, false);
+	delay_ms(4000);
+	port_pin_set_output_level(SIM808_RESET_PIN, true);
 	
 	sim808_send_command(CMD_GPS_PWR_ON);	//Enable GPS
-	sim808_parse_response_wait();
+	sim808_parse_response_wait(SIM808_RECEIVE_DELAY_NORMAL);
 	delay_ms(200);
 }
 
@@ -55,23 +73,23 @@ void sim808_init_http() {
 			
 		cmd.cmd = "AT+HTTPINIT";
 		sim808_send_command(cmd);
-		sim808_parse_response_wait();
+		sim808_parse_response_wait(SIM808_RECEIVE_DELAY_LONG);
 
 		cmd.cmd = "AT+HTTPPARA=\"CID\",1"; 							//Bearer profile identifier
 		sim808_send_command(cmd);
-		if(!sim808_parse_response_wait()) result = 0;
+		if(!sim808_parse_response_wait(SIM808_RECEIVE_DELAY_LONG)) result = 0;
 	
 		cmd.cmd = "AT+HTTPPARA=\"UA\",\"FONA\"";					//User agent
 		sim808_send_command(cmd);
-		if(!sim808_parse_response_wait()) result = 0;
+		if(!sim808_parse_response_wait(SIM808_RECEIVE_DELAY_LONG)) result = 0;
 	
 		cmd.cmd = "AT+HTTPPARA=\"URL\",\"http://tripcomputer.azurewebsites.net/api/test/1\"";
 		sim808_send_command(cmd);
-		if(!sim808_parse_response_wait()) result = 0;
+		if(!sim808_parse_response_wait(SIM808_RECEIVE_DELAY_LONG)) result = 0;
 	
 		cmd.cmd = "AT+HTTPPARA=\"TIMEOUT\",30";
 		sim808_send_command(cmd);
-		if(!sim808_parse_response_wait()) result = 0;
+		if(!sim808_parse_response_wait(SIM808_RECEIVE_DELAY_LONG)) result = 0;
 		
 		if(result == 0) {
 			result = 1;
@@ -87,12 +105,12 @@ void sim808_init_gprs() {
 
 	cmd.cmd = "AT+SAPBR=3,1,\"CONTYPE\",\"GPRS\"";
 	sim808_send_command(cmd);
-	sim808_parse_response_wait();
+	sim808_parse_response_wait(SIM808_RECEIVE_DELAY_NORMAL);
 	delay_ms(400);
 				
 	cmd.cmd = "AT+SAPBR=3,1,\"APN\",\"online.telia.se\"";
 	sim808_send_command(cmd);
-	sim808_parse_response_wait();
+	sim808_parse_response_wait(SIM808_RECEIVE_DELAY_NORMAL);
 	delay_ms(400);			
 }
 
@@ -104,12 +122,12 @@ uint8_t sim808_connect() {
 		
 	cmd.cmd = "AT+SAPBR=0,1";									//Disconnect if connected
 	sim808_send_command(cmd);
-	sim808_parse_response_wait();
+	sim808_parse_response_wait(SIM808_RECEIVE_DELAY_MEGALONG);
 	delay_ms(2000);
 	
 	cmd.cmd = "AT+SAPBR=1,1";									//Connect to network
 	sim808_send_command(cmd);
-	if(!sim808_parse_response_wait()) res = 0;
+	if(!sim808_parse_response_wait(SIM808_RECEIVE_DELAY_MEGALONG)) res = 0;
 	delay_ms(500);		
 
 	return res;
@@ -122,9 +140,19 @@ void sim808_send_command(command cmd) {
 	printf("%s\r\n", cmd.cmd);
 }
 
-uint8_t sim808_parse_response_wait() {
-	while(SIM808_buf.available != 1);	
-	return sim808_parse_response();
+uint8_t sim808_parse_response_wait(uint16_t timeout) {
+	volatile uint16_t i = 0;
+	
+	while(i < timeout) {
+		if(SIM808_buf.available == 1) {
+			return sim808_parse_response();
+		}
+		delay_ms(1);
+		i++;
+	}
+	
+	return 0;
+	
 }
 
 uint8_t sim808_parse_response() {
@@ -148,7 +176,6 @@ uint8_t sim808_parse_response() {
 	}
 	
 	SIM808_buf.available = 0;
-	volatile testVar = SIM808_buf.position;
 	SIM808_buf.position = 0;
 	memset(SIM808_buf.command, 0, sizeof(unsigned char)*COMMAND_BUFFER_SIZE);
 	
@@ -201,4 +228,40 @@ void init_sim808_usart_callbacks(void)
 	//usart_register_callback(&SIM808_usart, usart_read_callback, USART_CALLBACK_BUFFER_RECEIVED);
 	usart_enable_callback(&SIM808_usart, USART_CALLBACK_BUFFER_TRANSMITTED);
 	usart_enable_callback(&SIM808_usart, USART_CALLBACK_BUFFER_RECEIVED);
+}
+
+void sim808_init_commands() {
+	CMD_RESET.cmd = "ATZ0";
+	CMD_RESET.expected_response = "OK";
+	CMD_RESET.callback_enabled = 0;
+	
+	CMD_NO_ECHO.cmd = "ATE0";
+	CMD_NO_ECHO.expected_response = "OK";
+	CMD_NO_ECHO.callback_enabled = 0;
+	
+	CMD_GPS_PWR_ON.cmd = "AT+CGPSPWR=1";
+	CMD_GPS_PWR_ON.expected_response = "OK";
+	CMD_GPS_PWR_ON.callback_enabled = 0;
+	
+	CMD_GPS_PWR_OFF.cmd = "AT+CGPSPWR=0";
+	CMD_GPS_PWR_OFF.expected_response = "OK";
+	CMD_GPS_PWR_OFF.callback_enabled = 0;
+	
+	CMD_GET_GPS_DATA.cmd = "AT+CGPSINF=32";
+	CMD_GET_GPS_DATA.callback_enabled = 1;
+	CMD_GET_GPS_DATA.expected_response = "+CGPSINF";
+	CMD_GET_GPS_DATA.response_cb = &SIM808_response_gps_data;
+	
+	CMD_GET_GPS_FIX.cmd = "AT+CGPSSTATUS?";
+	CMD_GET_GPS_FIX.callback_enabled = 0;
+	CMD_GET_GPS_FIX.expected_response = "Location 3D";
+	
+	CMD_GPRS_GET_REQ.cmd = "AT+HTTPACTION=0";
+	CMD_GPRS_GET_REQ.callback_enabled = 1;
+	CMD_GPRS_GET_REQ.expected_response = "OK";
+	CMD_GPRS_GET_REQ.response_cb = &SIM808_response_gprs_get;
+	
+	CMD_AT.cmd = "AT";
+	CMD_AT.callback_enabled = 0;
+	CMD_AT.expected_response = "OK";
 }

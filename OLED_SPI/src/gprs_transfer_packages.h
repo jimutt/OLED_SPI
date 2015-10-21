@@ -48,7 +48,7 @@ void gprs_buf_push(log_entry, gprs_send_buffer*);
 log_entry gprs_buf_pull(gprs_send_buffer*);
 void gprs_send_data_log(void);
 
-void json_add_variable(char[], uint16_t*, char*, char*, uint8_t);
+void json_add_variable(char[], uint16_t*, const char*, char*, uint8_t);
 
 
 
